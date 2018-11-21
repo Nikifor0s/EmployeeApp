@@ -1,0 +1,126 @@
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Tooltip container */
+
+.tooltip {
+    position: relative !important;
+    display: inline-block !important;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    opacity: 1 !important;
+}
+
+.employee-details {
+    max-width: 100%;
+    display: inline-block;
+    /* width: 48%; */
+    min-width: 49% !important;
+    text-align: center;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: white;
+    text-align: center;
+    padding: 0 5px;
+    border-radius: 6px;
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+    /* Tooltip arrow */
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.shifts {
+    list-style: none;
+}
+
+    .shifts > li {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+        .shifts > li .date {
+            background: red;
+            color: white;
+            text-align: center;
+            width: 60px;
+            border-radius: 8px;
+            -ms-border-radius: 8px;
+        }
+
+            .shifts > li .date .month {
+                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: bold;
+                padding: 2px 6px;
+            }
+
+            .shifts > li .date .day {
+                background: #f7f7f7;
+                color: #333;
+                font-size: 20px;
+                padding: 6px 12px;
+            }
+
+        .shifts > li .details {
+            position: absolute;
+            top: 0px;
+            left: 70px;
+        }
+
+            .shifts > li .details .artist {
+                font-weight: bold;
+                display: block;
+            }
+
+            .shifts > li .details .genre {
+                font-size: 15px;
+            }

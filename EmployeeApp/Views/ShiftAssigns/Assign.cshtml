@@ -1,0 +1,32 @@
+﻿@model EmployeeApp.ViewModels.ShiftAssignViewModel
+    @{
+        ViewBag.Title = "Assign";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Assign</h2>
+
+    @using (Html.BeginForm("Assign", "ShiftAssigns"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.ShiftId)
+        @Html.HiddenFor(m => m.EmployeeId)
+
+        <p class="alert alert-info">All Fields are <strong>Required</strong></p>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Date)
+            @Html.TextBoxFor(m => m.Date, new { @class = "form-control", placeholder = "π.χ 3 Νοε 2019" })
+            @Html.ValidationMessageFor(m => m.Date)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Time)
+            @Html.TextBoxFor(m => m.Time, new { @class = "form-control", placeholder = "π.χ 22:00" })
+            @Html.ValidationMessageFor(m => m.Time)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Shift.DayShift)
+            @Html.DropDownListFor(m => m.Shift.DayShift, new SelectList(Model.Shifts, "Id", "DayShift"), "--Select--", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Shift.DayShift)
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    }

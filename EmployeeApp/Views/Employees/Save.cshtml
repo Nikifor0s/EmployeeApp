@@ -1,0 +1,69 @@
+﻿@model EmployeeApp.ViewModels.EmployeeFormViewModels
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Employees"))
+{
+    @Html.HiddenFor(m => m.Employee.Id)
+    <h4>Employees</h4>
+    <div id="add" class="form-group col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.FirstName)
+            @Html.TextBoxFor(m => m.Employee.FirstName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.LastName)
+            @Html.TextBoxFor(m => m.Employee.LastName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.DepartmentId)
+            @Html.DropDownListFor(m => m.Employee.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.RoleId)
+            @Html.DropDownListFor(m => m.Employee.RoleId, new SelectList(Model.Roles, "Id", "Name"), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group col-md-4">
+        <h4>Contact Details</h4>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.ContactDetails.MobilePhone)
+            @Html.TextBoxFor(m => m.Employee.ContactDetails.MobilePhone, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.ContactDetails.Address)
+            @Html.TextBoxFor(m => m.Employee.ContactDetails.Address, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.ContactDetails.City)
+            @Html.TextBoxFor(m => m.Employee.ContactDetails.City, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.ContactDetails.PostalCode)
+            @Html.TextBoxFor(m => m.Employee.ContactDetails.PostalCode, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group col-md-4">
+        <h4>PersonalDetails</h4>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.PersonalDetails.Sex)
+            @Html.EnumDropDownListFor(m => m.Employee.PersonalDetails.Sex, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.PersonalDetails.DateOfBirth)
+            @Html.EditorFor(m => m.Employee.PersonalDetails.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.PersonalDetails.CurrentFamilyStatus)<br />
+            @Html.EnumDropDownListFor(m => m.Employee.PersonalDetails.CurrentFamilyStatus, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.PersonalDetails.NumberOfChildren)
+            @Html.TextBoxFor(m => m.Employee.PersonalDetails.NumberOfChildren, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
