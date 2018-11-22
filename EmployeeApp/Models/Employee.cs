@@ -38,5 +38,6 @@ namespace EmployeeApp.Models
         public virtual ContactDetails ContactDetails { get; set; }
 
         //Kostas Pull
+        //KostAS commit 2
     }
 }
