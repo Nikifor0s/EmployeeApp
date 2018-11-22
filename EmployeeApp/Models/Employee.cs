@@ -36,5 +36,7 @@ namespace EmployeeApp.Models
         public virtual PersonalDetails PersonalDetails { get; set; }
 
         public virtual ContactDetails ContactDetails { get; set; }
+
+        //Kostas Pull
     }
 }
