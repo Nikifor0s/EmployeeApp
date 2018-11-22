@@ -24,7 +24,7 @@ namespace EmployeeApp.Controllers
                 .Include(s => s.Employee)
                 .Where(s => s.DateTime > DateTime.Now);
 
-            return View(upcomingShifts);
+            return View("Index", upcomingShifts);
         }
 
         public ActionResult ShiftForm()
@@ -36,12 +36,16 @@ namespace EmployeeApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ShiftForm(ShiftFormViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-                return View("ShiftForm", viewModel);
+            //if (!ModelState.IsValid)
+            //    return View("ShiftForm", viewModel);
 
+            var employee = _context.Employees.Single(e => e.Id == viewModel.EmployeeId);
+            //var shift = _context.Shifts.Single(s => s.Employee.Id == employee.Id);
+
+            //shift.DateTime = viewModel.GetDateTime();
             var shift = new Shift
             {
-                EmployeeId = viewModel.EmployeeId,
+                Employee = employee,
                 DateTime = viewModel.GetDateTime()
             };
 

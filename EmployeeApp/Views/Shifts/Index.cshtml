@@ -1,28 +1,29 @@
 ﻿@model IEnumerable<EmployeeApp.Models.Shift>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>UpComingShifts</h2>
-
-<ul class="gigs">
-    @foreach (var shift in Model)
-    {
-        <li>
-            <div class="date">
-                <div class="month">
-                    @shift.DateTime.ToString("MMM")
-                </div>
-                <div class="day">
-                    @shift.DateTime.ToString("d ")
-                </div>
-            </div>
-            <div class="details">
-                <span class="artist">
-                    @shift.DayShift
-                </span>
-        </li>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
-</ul>
+
+    <h2>UpComingShifts</h2>
+
+    @Html.ActionLink("Shift Form", "ShiftForm", "Shifts")
+    <ul class="gigs">
+        @foreach (var shift in Model)
+        {
+            <li>
+                <div class="date">
+                    <div class="month">
+                        @shift.DateTime.ToString("MMM")
+                    </div>
+                    <div class="day">
+                        @shift.DateTime.ToString("d ")
+                    </div>
+                </div>
+                <div class="details">
+                    <span class="artist">
+                        @shift.DayShift
+                    </span>
+            </li>
+        }
+    </ul>
