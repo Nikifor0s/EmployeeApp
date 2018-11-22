@@ -34,7 +34,7 @@ namespace EmployeeApp.Models
         public virtual PersonalDetails PersonalDetails { get; set; }
 
         public virtual ContactDetails ContactDetails { get; set; }
-
+        //Nik Push
         //Kostas Pull
         //KostAS commit 2
         //Kostas Commit 3
