@@ -4,9 +4,7 @@ namespace EmployeeApp.Models
 {
     public class Employee
     {
-        /// <summary>
-        /// //
-        /// </summary>
+        //YELLOW
         public int Id { get; set; }
 
         [Required]
