@@ -6,10 +6,6 @@ namespace EmployeeApp.Migrations
     {
         public override void Up()
         {
-            Sql("INSERT INTO Shifts( DayShift) VALUES ( 'Morning')");
-            Sql("INSERT INTO Shifts( DayShift) VALUES ( 'Evening')");
-            Sql("INSERT INTO Shifts( DayShift) VALUES ( 'Night')");
-
             Sql("INSERT INTO Departments( Name, Address) VALUES ( 'HR', 'Palaiologou 1')");
             Sql("INSERT INTO Departments( Name, Address) VALUES ( 'Sales', 'Spiridwn 3')");
             Sql("INSERT INTO Departments( Name, Address) VALUES ( 'Production', 'Panepistimiou 8')");

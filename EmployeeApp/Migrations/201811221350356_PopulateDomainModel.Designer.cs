@@ -7,13 +7,13 @@ namespace EmployeeApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class RefactorShiftAssignDateTime : IMigrationMetadata
+    public sealed partial class PopulateDomainModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RefactorShiftAssignDateTime));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateDomainModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811211212590_RefactorShiftAssignDateTime"; }
+            get { return "201811221350356_PopulateDomainModel"; }
         }
         
         string IMigrationMetadata.Source

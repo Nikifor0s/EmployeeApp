@@ -8,12 +8,14 @@ namespace EmployeeApp.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Accounts",
+                "dbo.ContactDetails",
                 c => new
                     {
                         EmployeeId = c.Int(nullable: false),
-                        Email = c.String(),
-                        Password = c.String(),
+                        MobilePhone = c.String(),
+                        Address = c.String(),
+                        City = c.String(),
+                        PostalCode = c.String(),
                     })
                 .PrimaryKey(t => t.EmployeeId)
                 .ForeignKey("dbo.Employees", t => t.EmployeeId)
@@ -34,20 +36,6 @@ namespace EmployeeApp.Migrations
                 .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.DepartmentId)
                 .Index(t => t.RoleId);
-            
-            CreateTable(
-                "dbo.ContactDetails",
-                c => new
-                    {
-                        EmployeeId = c.Int(nullable: false),
-                        MobilePhone = c.String(),
-                        Address = c.String(),
-                        City = c.String(),
-                        PostalCode = c.String(),
-                    })
-                .PrimaryKey(t => t.EmployeeId)
-                .ForeignKey("dbo.Employees", t => t.EmployeeId)
-                .Index(t => t.EmployeeId);
             
             CreateTable(
                 "dbo.Departments",
@@ -89,32 +77,34 @@ namespace EmployeeApp.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        DayShift = c.String(),
-                        Date = c.DateTime(),
+                        DayShift = c.Int(nullable: false),
+                        DateTime = c.DateTime(nullable: false),
+                        EmployeeId = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Employees", t => t.EmployeeId)
+                .Index(t => t.EmployeeId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Accounts", "EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.Shifts", "EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.ContactDetails", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Employees", "RoleId", "dbo.Roles");
             DropForeignKey("dbo.PersonalDetails", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Employees", "DepartmentId", "dbo.Departments");
-            DropForeignKey("dbo.ContactDetails", "EmployeeId", "dbo.Employees");
+            DropIndex("dbo.Shifts", new[] { "EmployeeId" });
             DropIndex("dbo.PersonalDetails", new[] { "EmployeeId" });
-            DropIndex("dbo.ContactDetails", new[] { "EmployeeId" });
             DropIndex("dbo.Employees", new[] { "RoleId" });
             DropIndex("dbo.Employees", new[] { "DepartmentId" });
-            DropIndex("dbo.Accounts", new[] { "EmployeeId" });
+            DropIndex("dbo.ContactDetails", new[] { "EmployeeId" });
             DropTable("dbo.Shifts");
             DropTable("dbo.Roles");
             DropTable("dbo.PersonalDetails");
             DropTable("dbo.Departments");
-            DropTable("dbo.ContactDetails");
             DropTable("dbo.Employees");
-            DropTable("dbo.Accounts");
+            DropTable("dbo.ContactDetails");
         }
     }
 }

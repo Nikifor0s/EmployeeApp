@@ -11,7 +11,6 @@ namespace EmployeeApp.DAL
         public DbSet<Role> Roles { get; set; }
         public DbSet<PersonalDetails> PersonalDetails { get; set; }
         public DbSet<ContactDetails> ContactDetails { get; set; }
-        public DbSet<ShiftAssign> ShiftAssigns { get; set; }
 
         public EmployeeAppDbContext() : base("EmployeeAppContext")
         {
@@ -19,11 +18,6 @@ namespace EmployeeApp.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ShiftAssign>()
-                .HasRequired(s => s.Shift)
-                .WithMany()
-                .WillCascadeOnDelete(false);
-
             base.OnModelCreating(modelBuilder);
         }
     }

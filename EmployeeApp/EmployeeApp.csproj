@@ -134,38 +134,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ShiftAssignsController.cs" />
+    <Compile Include="Controllers\ShiftsController.cs" />
     <Compile Include="DAL\EmployeeAppDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811201351041_Initial.cs" />
-    <Compile Include="Migrations\201811201351041_Initial.Designer.cs">
-      <DependentUpon>201811201351041_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201811221349509_Initial.cs" />
+    <Compile Include="Migrations\201811221349509_Initial.Designer.cs">
+      <DependentUpon>201811221349509_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811201351384_PopulateDomainModel.cs" />
-    <Compile Include="Migrations\201811201351384_PopulateDomainModel.Designer.cs">
-      <DependentUpon>201811201351384_PopulateDomainModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811211103212_AddShiftAssign.cs" />
-    <Compile Include="Migrations\201811211103212_AddShiftAssign.Designer.cs">
-      <DependentUpon>201811211103212_AddShiftAssign.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811211153466_RemoveDateTimeFromShifts.cs" />
-    <Compile Include="Migrations\201811211153466_RemoveDateTimeFromShifts.Designer.cs">
-      <DependentUpon>201811211153466_RemoveDateTimeFromShifts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811211212590_RefactorShiftAssignDateTime.cs" />
-    <Compile Include="Migrations\201811211212590_RefactorShiftAssignDateTime.Designer.cs">
-      <DependentUpon>201811211212590_RefactorShiftAssignDateTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811211336211_ReafactorShiftAssign.cs" />
-    <Compile Include="Migrations\201811211336211_ReafactorShiftAssign.Designer.cs">
-      <DependentUpon>201811211336211_ReafactorShiftAssign.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811211354010_RefactorShiftAssigns.cs" />
-    <Compile Include="Migrations\201811211354010_RefactorShiftAssigns.Designer.cs">
-      <DependentUpon>201811211354010_RefactorShiftAssigns.cs</DependentUpon>
+    <Compile Include="Migrations\201811221350356_PopulateDomainModel.cs" />
+    <Compile Include="Migrations\201811221350356_PopulateDomainModel.Designer.cs">
+      <DependentUpon>201811221350356_PopulateDomainModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactDetails.cs" />
@@ -174,11 +154,10 @@
     <Compile Include="Models\PersonalDetails.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Shift.cs" />
-    <Compile Include="Models\ShiftAssign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModels.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
-    <Compile Include="ViewModels\ShiftAssignViewModel.cs" />
+    <Compile Include="ViewModels\ShiftFormViewModel.cs" />
     <Compile Include="ViewModels\ValidTime.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,8 +198,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Save.cshtml" />
-    <Content Include="Views\ShiftAssigns\Index.cshtml" />
-    <Content Include="Views\ShiftAssigns\Assign.cshtml" />
+    <Content Include="Views\Shifts\ShiftForm.cshtml" />
+    <Content Include="Views\Shifts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -239,26 +218,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811201351041_Initial.resx">
-      <DependentUpon>201811201351041_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811221349509_Initial.resx">
+      <DependentUpon>201811221349509_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811201351384_PopulateDomainModel.resx">
-      <DependentUpon>201811201351384_PopulateDomainModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811211103212_AddShiftAssign.resx">
-      <DependentUpon>201811211103212_AddShiftAssign.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811211153466_RemoveDateTimeFromShifts.resx">
-      <DependentUpon>201811211153466_RemoveDateTimeFromShifts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811211212590_RefactorShiftAssignDateTime.resx">
-      <DependentUpon>201811211212590_RefactorShiftAssignDateTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811211336211_ReafactorShiftAssign.resx">
-      <DependentUpon>201811211336211_ReafactorShiftAssign.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811211354010_RefactorShiftAssigns.resx">
-      <DependentUpon>201811211354010_RefactorShiftAssigns.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811221350356_PopulateDomainModel.resx">
+      <DependentUpon>201811221350356_PopulateDomainModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
