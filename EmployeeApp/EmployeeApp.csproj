@@ -160,13 +160,13 @@
       <DependentUpon>201811231233295_AddDepartmentIdInShifts.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Employee\ContactDetails.cs" />
-    <Compile Include="Models\Employee\Department.cs" />
-    <Compile Include="Models\Employee\Employee.cs" />
-    <Compile Include="Models\Employee\PersonalDetails.cs" />
-    <Compile Include="Models\Employee\Role.cs" />
-    <Compile Include="Models\Employee\Shift.cs" />
-    <Compile Include="Models\Employee\Work.cs" />
+    <Compile Include="Models\Employees\ContactDetails.cs" />
+    <Compile Include="Models\Employees\Department.cs" />
+    <Compile Include="Models\Employees\Employee.cs" />
+    <Compile Include="Models\Employees\PersonalDetails.cs" />
+    <Compile Include="Models\Employees\Role.cs" />
+    <Compile Include="Models\Employees\Shift.cs" />
+    <Compile Include="Models\Employees\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
