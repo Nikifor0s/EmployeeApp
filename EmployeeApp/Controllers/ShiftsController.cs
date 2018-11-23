@@ -1,6 +1,7 @@
 ﻿using EmployeeApp.DAL;
 using EmployeeApp.Models;
 using EmployeeApp.ViewModels;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -17,8 +18,13 @@ namespace EmployeeApp.Controllers
 
         // GET: Shifts
         public ActionResult Index()
-        {
-            return View();
+        {           
+            var shifts = _context.Shifts
+                .Include(s => s.Department)
+                .Include(s => s.Works)
+                .ToList();
+            
+            return View(shifts);
         }
 
         public ActionResult Create()

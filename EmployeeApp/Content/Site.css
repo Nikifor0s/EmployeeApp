@@ -116,11 +116,11 @@ textarea {
             left: 70px;
         }
 
-            .shifts > li .details .artist {
+            .shifts > li .details .department {
                 font-weight: bold;
                 display: block;
             }
 
-            .shifts > li .details .genre {
+            .shifts > li .details .dayshift {
                 font-size: 15px;
             }
