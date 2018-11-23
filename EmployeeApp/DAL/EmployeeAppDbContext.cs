@@ -11,6 +11,7 @@ namespace EmployeeApp.DAL
         public DbSet<Role> Roles { get; set; }
         public DbSet<PersonalDetails> PersonalDetails { get; set; }
         public DbSet<ContactDetails> ContactDetails { get; set; }
+        public DbSet<Work> Works { get; set; }
 
         public EmployeeAppDbContext() : base("EmployeeAppContext")
         {
@@ -18,6 +19,16 @@ namespace EmployeeApp.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.Works)
+                .WithRequired(e => e.Employee)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Shift>()
+                .HasMany(e => e.Works)
+                .WithRequired(e => e.Shift)
+                .WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -147,6 +147,18 @@
     <Compile Include="Migrations\201811221350356_PopulateDomainModel.Designer.cs">
       <DependentUpon>201811221350356_PopulateDomainModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811231145586_DropEmpoyeePropertyFromShift.cs" />
+    <Compile Include="Migrations\201811231145586_DropEmpoyeePropertyFromShift.Designer.cs">
+      <DependentUpon>201811231145586_DropEmpoyeePropertyFromShift.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811231202235_AddWorkModel.cs" />
+    <Compile Include="Migrations\201811231202235_AddWorkModel.Designer.cs">
+      <DependentUpon>201811231202235_AddWorkModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811231233295_AddDepartmentIdInShifts.cs" />
+    <Compile Include="Migrations\201811231233295_AddDepartmentIdInShifts.Designer.cs">
+      <DependentUpon>201811231233295_AddDepartmentIdInShifts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactDetails.cs" />
     <Compile Include="Models\Department.cs" />
@@ -154,6 +166,7 @@
     <Compile Include="Models\PersonalDetails.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Shift.cs" />
+    <Compile Include="Models\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModels.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
@@ -198,7 +211,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Save.cshtml" />
-    <Content Include="Views\Shifts\ShiftForm.cshtml" />
+    <Content Include="Views\Shifts\Create.cshtml" />
     <Content Include="Views\Shifts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +236,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811221350356_PopulateDomainModel.resx">
       <DependentUpon>201811221350356_PopulateDomainModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231145586_DropEmpoyeePropertyFromShift.resx">
+      <DependentUpon>201811231145586_DropEmpoyeePropertyFromShift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231202235_AddWorkModel.resx">
+      <DependentUpon>201811231202235_AddWorkModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231233295_AddDepartmentIdInShifts.resx">
+      <DependentUpon>201811231233295_AddDepartmentIdInShifts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

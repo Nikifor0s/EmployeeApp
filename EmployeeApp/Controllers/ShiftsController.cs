@@ -1,8 +1,6 @@
 ﻿using EmployeeApp.DAL;
 using EmployeeApp.Models;
 using EmployeeApp.ViewModels;
-using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -10,7 +8,7 @@ namespace EmployeeApp.Controllers
 {
     public class ShiftsController : Controller
     {
-        private EmployeeAppDbContext _context;
+        private readonly EmployeeAppDbContext _context;
 
         public ShiftsController()
         {
@@ -20,77 +18,40 @@ namespace EmployeeApp.Controllers
         // GET: Shifts
         public ActionResult Index()
         {
-            var upcomingShifts = _context.Shifts
-                .Include(s => s.Employee)
-                .Where(s => s.DateTime > DateTime.Now);
-
-            return View("Index", upcomingShifts);
+            return View();
         }
 
-        public ActionResult ShiftForm()
+        public ActionResult Create()
         {
-            return View();
+            var viewModel = new ShiftFormViewModel
+            {
+                Departments = _context.Departments.ToList()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ShiftForm(ShiftFormViewModel viewModel)
+        public ActionResult Create(ShiftFormViewModel viewModel)
         {
-            //if (!ModelState.IsValid)
-            //    return View("ShiftForm", viewModel);
+            if (!ModelState.IsValid)
+            {
+                viewModel.Departments = _context.Departments.ToList();
+                return View("Create", viewModel);
+            }
 
-            var employee = _context.Employees.Single(e => e.Id == viewModel.EmployeeId);
-            //var shift = _context.Shifts.Single(s => s.Employee.Id == employee.Id);
-
-            //shift.DateTime = viewModel.GetDateTime();
             var shift = new Shift
             {
-                Employee = employee,
-                DateTime = viewModel.GetDateTime()
+                DateTime = viewModel.Shift.DateTime,
+                DayShift = viewModel.Shift.DayShift,
+                DepartmentId = viewModel.Shift.DepartmentId
             };
 
             _context.Shifts.Add(shift);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Shifts");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Update(ShiftFormViewModel viewModel)
-        {
-            if (!ModelState.IsValid)
-                return View("ShiftForm", "Shifts");
-
-            var employee = _context.Employees.Single();
-            var shift = _context.Shifts
-                .Single(s => s.Id == viewModel.Shift.Id && s.EmployeeId == employee.Id);
-            shift.EmployeeId = viewModel.EmployeeId;
-            shift.DateTime = viewModel.GetDateTime();
-
-            _context.SaveChanges();
-
-            return RedirectToAction("Index", "Shifts");
-        }
-
-        public ActionResult Edit(int Id)
-        {
-            var employee = _context.Employees.Single(e => e.Id == Id);
-            var shift = _context.Shifts.Single();
-
-            var viewModel = new ShiftFormViewModel
-            {
-                EmployeeId = employee.Id,
-                Date = shift.DateTime.ToString("d MMM yyyy"),
-                Time = shift.DateTime.ToString("d MMM yyyy")
-            };
-
-            return View("ShiftForm", "Shifts");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
         }
     }
 }

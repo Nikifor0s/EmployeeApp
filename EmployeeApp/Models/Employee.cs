@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace EmployeeApp.Models
 {
@@ -33,16 +35,13 @@ namespace EmployeeApp.Models
 
         public virtual PersonalDetails PersonalDetails { get; set; }
 
-        //
         public virtual ContactDetails ContactDetails { get; set; }
 
-        //Nik Push
-        //Kostas Pull
-        //KostAS commit 2
-        //Kostas Commit 3
-        //kostas commit 4
-        //kostas commit 5
-        //Kostas 6
-        //kati allo
+        public ICollection<Work> Works { get; set; }
+
+        public Employee()
+        {
+            Works = new Collection<Work>();
+        }
     }
 }
