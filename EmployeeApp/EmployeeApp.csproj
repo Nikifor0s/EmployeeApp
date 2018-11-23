@@ -175,6 +175,7 @@
     <Compile Include="Models\Employees\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
+    <Compile Include="ViewModels\EmployeesAssignToShiftViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
     <Compile Include="ViewModels\ShiftFormViewModel.cs" />
     <Compile Include="ViewModels\ValidTime.cs" />
@@ -219,6 +220,7 @@
     <Content Include="Views\Employees\Save.cshtml" />
     <Content Include="Views\Shifts\Create.cshtml" />
     <Content Include="Views\Shifts\Index.cshtml" />
+    <Content Include="Views\Shifts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
