@@ -163,6 +163,10 @@
     <Compile Include="Migrations\201811231728056_AddLeaveAndRequest.Designer.cs">
       <DependentUpon>201811231728056_AddLeaveAndRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811231857241_AddEvaluation.cs" />
+    <Compile Include="Migrations\201811231857241_AddEvaluation.Designer.cs">
+      <DependentUpon>201811231857241_AddEvaluation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
     <Compile Include="Models\Employees\ContactDetails.cs" />
@@ -259,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811231728056_AddLeaveAndRequest.resx">
       <DependentUpon>201811231728056_AddLeaveAndRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231857241_AddEvaluation.resx">
+      <DependentUpon>201811231857241_AddEvaluation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
