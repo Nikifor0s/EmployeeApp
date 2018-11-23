@@ -164,11 +164,16 @@
       <DependentUpon>201811231728056_AddLeaveAndRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Employees\Answer.cs" />
     <Compile Include="Models\Employees\ContactDetails.cs" />
     <Compile Include="Models\Employees\Department.cs" />
     <Compile Include="Models\Employees\Employee.cs" />
+    <Compile Include="Models\Employees\Evaluation.cs" />
+    <Compile Include="Models\Employees\Form.cs" />
     <Compile Include="Models\Employees\Leave.cs" />
+    <Compile Include="Models\Employees\Performance.cs" />
     <Compile Include="Models\Employees\PersonalDetails.cs" />
+    <Compile Include="Models\Employees\Question.cs" />
     <Compile Include="Models\Employees\Request.cs" />
     <Compile Include="Models\Employees\Role.cs" />
     <Compile Include="Models\Employees\Shift.cs" />

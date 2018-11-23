@@ -1,5 +1,6 @@
 ﻿using EmployeeApp.Models;
 using EmployeeApp.Models.Employees;
+using EmployeeProject.Models.Employees;
 using System;
 using System.Data.Entity;
 
@@ -16,6 +17,12 @@ namespace EmployeeApp.DAL
         public DbSet<Work> Works { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<Leave> Leaves { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Evaluation> Evaluations { get; set; }
+        public DbSet<Form> Forms { get; set; }
+        public DbSet<Performance> Performances { get; set; }
+        public DbSet<Question> Questions { get; set; }
+
 
         public EmployeeAppDbContext() : base("EmployeeAppContext")
         {
