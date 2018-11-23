@@ -8,6 +8,7 @@ namespace EmployeeApp.Models
     public class Employee
     {
         //YELLOW
+        //Red
         public int Id { get; set; }
 
         [Required]
