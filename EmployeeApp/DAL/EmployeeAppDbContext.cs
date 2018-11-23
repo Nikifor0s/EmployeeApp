@@ -1,4 +1,5 @@
 ﻿using EmployeeApp.Models;
+using System;
 using System.Data.Entity;
 
 namespace EmployeeApp.DAL
@@ -12,6 +13,11 @@ namespace EmployeeApp.DAL
         public DbSet<PersonalDetails> PersonalDetails { get; set; }
         public DbSet<ContactDetails> ContactDetails { get; set; }
         public DbSet<Work> Works { get; set; }
+
+        internal object Include()
+        {
+            throw new NotImplementedException();
+        }
 
         public EmployeeAppDbContext() : base("EmployeeAppContext")
         {
