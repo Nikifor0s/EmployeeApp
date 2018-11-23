@@ -163,6 +163,10 @@
     <Compile Include="Migrations\201811231728056_AddLeaveAndRequest.Designer.cs">
       <DependentUpon>201811231728056_AddLeaveAndRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811231857241_AddEvaluation.cs" />
+    <Compile Include="Migrations\201811231857241_AddEvaluation.Designer.cs">
+      <DependentUpon>201811231857241_AddEvaluation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
     <Compile Include="Models\Employees\ContactDetails.cs" />
@@ -180,6 +184,7 @@
     <Compile Include="Models\Employees\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
+    <Compile Include="ViewModels\EmployeesAssignToShiftViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
     <Compile Include="ViewModels\ShiftFormViewModel.cs" />
     <Compile Include="ViewModels\ValidTime.cs" />
@@ -224,6 +229,7 @@
     <Content Include="Views\Employees\Save.cshtml" />
     <Content Include="Views\Shifts\Create.cshtml" />
     <Content Include="Views\Shifts\Index.cshtml" />
+    <Content Include="Views\Shifts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811231728056_AddLeaveAndRequest.resx">
       <DependentUpon>201811231728056_AddLeaveAndRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231857241_AddEvaluation.resx">
+      <DependentUpon>201811231857241_AddEvaluation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

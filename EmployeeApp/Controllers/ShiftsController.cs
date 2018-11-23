@@ -3,6 +3,7 @@ using EmployeeApp.Models;
 using EmployeeApp.ViewModels;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace EmployeeApp.Controllers
@@ -18,13 +19,32 @@ namespace EmployeeApp.Controllers
 
         // GET: Shifts
         public ActionResult Index()
-        {           
+        {
             var shifts = _context.Shifts
                 .Include(s => s.Department)
                 .Include(s => s.Works)
                 .ToList();
-            
+
             return View(shifts);
+        }
+
+        public ActionResult Details(int? Id)
+        {
+            if (Id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var shift = _context.Shifts.Find(Id);
+
+            if (shift == null)
+                return HttpNotFound();
+
+            var viewModel = new EmployeesAssignToShiftViewModel
+            {
+                Employees = _context.Employees.Where(e => e.Department == shift.Department).ToList(),
+                Shift = shift
+            };
+
+            return View("Details", viewModel);
         }
 
         public ActionResult Create()

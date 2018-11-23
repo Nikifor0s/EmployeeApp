@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using EmployeeApp.Models.Employees;
 
 namespace EmployeeApp.Models
 {
