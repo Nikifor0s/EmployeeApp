@@ -8,7 +8,7 @@
 <h2>Shifts</h2>
 
 <ul class="shifts">
-    @foreach(var shift in Model)
+    @foreach (var shift in Model)
     {
         <li>
             <div class="date">
@@ -23,6 +23,7 @@
                 <span class="department">
                     @shift.Department.Name
                 </span>
+                <br />
                 <span class="dayshift">
                     @shift.DayShift
                 </span>

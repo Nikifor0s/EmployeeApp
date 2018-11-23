@@ -168,7 +168,7 @@
     <Compile Include="Models\Shift.cs" />
     <Compile Include="Models\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\EmployeeFormViewModels.cs" />
+    <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
     <Compile Include="ViewModels\ShiftFormViewModel.cs" />
     <Compile Include="ViewModels\ValidTime.cs" />
