@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using EmployeeApp.Models.Employees;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -39,9 +40,12 @@ namespace EmployeeApp.Models
 
         public ICollection<Work> Works { get; set; }
 
+        public ICollection<Request> Requests { get; set; }
+
         public Employee()
         {
             Works = new Collection<Work>();
+            Requests = new Collection<Request>();
         }
     }
 }
