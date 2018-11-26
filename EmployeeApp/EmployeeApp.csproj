@@ -168,9 +168,13 @@
     <Compile Include="Migrations\201811231857241_AddEvaluation.Designer.cs">
       <DependentUpon>201811231857241_AddEvaluation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811261835404_AddRemainingDaysOfLeaveInEmployee.cs" />
-    <Compile Include="Migrations\201811261835404_AddRemainingDaysOfLeaveInEmployee.Designer.cs">
-      <DependentUpon>201811261835404_AddRemainingDaysOfLeaveInEmployee.cs</DependentUpon>
+    <Compile Include="Migrations\201811262057559_Update.cs" />
+    <Compile Include="Migrations\201811262057559_Update.Designer.cs">
+      <DependentUpon>201811262057559_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811262103348_AddRemainingDaysOfLeaveInEmployee.cs" />
+    <Compile Include="Migrations\201811262103348_AddRemainingDaysOfLeaveInEmployee.Designer.cs">
+      <DependentUpon>201811262103348_AddRemainingDaysOfLeaveInEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
@@ -276,6 +280,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811231857241_AddEvaluation.resx">
       <DependentUpon>201811231857241_AddEvaluation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811262057559_Update.resx">
+      <DependentUpon>201811262057559_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811262103348_AddRemainingDaysOfLeaveInEmployee.resx">
+      <DependentUpon>201811262103348_AddRemainingDaysOfLeaveInEmployee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

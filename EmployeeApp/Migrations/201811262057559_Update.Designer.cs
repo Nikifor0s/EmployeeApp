@@ -7,13 +7,13 @@ namespace EmployeeApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddRemainingDaysOfLeaveInEmployee : IMigrationMetadata
+    public sealed partial class Update : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddRemainingDaysOfLeaveInEmployee));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Update));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811261835404_AddRemainingDaysOfLeaveInEmployee"; }
+            get { return "201811262057559_Update"; }
         }
         
         string IMigrationMetadata.Source
