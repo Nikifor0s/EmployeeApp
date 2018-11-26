@@ -22,6 +22,7 @@ namespace EmployeeApp.DAL
         public DbSet<Form> Forms { get; set; }
         public DbSet<Performance> Performances { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
 
         public EmployeeAppDbContext() : base("EmployeeAppContext")
