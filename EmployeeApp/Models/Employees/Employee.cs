@@ -48,6 +48,8 @@ namespace EmployeeApp.Models
 
         public int RemaingDaysOfLeave { get; set; } = 23;
 
+        public ICollection<Assignment> Assignments { get; set; }
+
         public Employee()
         {
             Works = new Collection<Work>();
@@ -80,7 +82,6 @@ namespace EmployeeApp.Models
             {
                 throw new DataException(e.Message);
             }
-
 
             return request;
         }

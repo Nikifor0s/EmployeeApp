@@ -1,7 +1,6 @@
 ﻿using EmployeeApp.Models;
 using EmployeeApp.Models.Employees;
 using EmployeeProject.Models.Employees;
-using System;
 using System.Data.Entity;
 
 namespace EmployeeApp.DAL
@@ -23,7 +22,6 @@ namespace EmployeeApp.DAL
         public DbSet<Performance> Performances { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Project> Projects { get; set; }
-
 
         public EmployeeAppDbContext() : base("EmployeeAppContext")
         {
@@ -49,6 +47,16 @@ namespace EmployeeApp.DAL
             modelBuilder.Entity<Leave>()
                 .HasMany(l => l.Requests)
                 .WithRequired(l => l.Leave)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.Assignments)
+                .WithRequired(e => e.Employee)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Project>()
+                .HasMany(e => e.Assignments)
+                .WithRequired(e => e.Project)
                 .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);

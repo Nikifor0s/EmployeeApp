@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace EmployeeApp.Models.Employees
 {
@@ -12,6 +10,6 @@ namespace EmployeeApp.Models.Employees
         public DateTime StartingDate { get; set; }
         public DateTime EndDate { get; set; }
 
-
+        public ICollection<Assignment> Assignments { get; set; }
     }
 }
