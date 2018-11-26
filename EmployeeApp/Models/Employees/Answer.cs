@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
-using EmployeeProject.Models;
-
-namespace EmployeeProject.Models.Employees
+﻿namespace EmployeeProject.Models.Employees
 {
-    
+    //
     public class Answer
     {
         public enum Rating
@@ -37,6 +29,5 @@ namespace EmployeeProject.Models.Employees
         public virtual Question Question { get; set; }
 
         public virtual Performance Performance { get; set; }
-
     }
 }
