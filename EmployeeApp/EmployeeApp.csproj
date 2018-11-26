@@ -168,9 +168,9 @@
     <Compile Include="Migrations\201811231857241_AddEvaluation.Designer.cs">
       <DependentUpon>201811231857241_AddEvaluation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811261850116_AddProjectModel.cs" />
-    <Compile Include="Migrations\201811261850116_AddProjectModel.Designer.cs">
-      <DependentUpon>201811261850116_AddProjectModel.cs</DependentUpon>
+    <Compile Include="Migrations\201811261835404_AddRemainingDaysOfLeaveInEmployee.cs" />
+    <Compile Include="Migrations\201811261835404_AddRemainingDaysOfLeaveInEmployee.Designer.cs">
+      <DependentUpon>201811261835404_AddRemainingDaysOfLeaveInEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
@@ -182,7 +182,6 @@
     <Compile Include="Models\Employees\Leave.cs" />
     <Compile Include="Models\Employees\Performance.cs" />
     <Compile Include="Models\Employees\PersonalDetails.cs" />
-    <Compile Include="Models\Employees\Project.cs" />
     <Compile Include="Models\Employees\Question.cs" />
     <Compile Include="Models\Employees\Request.cs" />
     <Compile Include="Models\Employees\Role.cs" />
@@ -276,8 +275,8 @@
     <EmbeddedResource Include="Migrations\201811231857241_AddEvaluation.resx">
       <DependentUpon>201811231857241_AddEvaluation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811261850116_AddProjectModel.resx">
-      <DependentUpon>201811261850116_AddProjectModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811261835404_AddRemainingDaysOfLeaveInEmployee.resx">
+      <DependentUpon>201811261835404_AddRemainingDaysOfLeaveInEmployee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
