@@ -43,6 +43,8 @@ namespace EmployeeApp.Models
 
         public ICollection<Request> Requests { get; set; }
 
+        public int RemaingDaysOfLeave { get; set; } = 23;
+
         public Employee()
         {
             Works = new Collection<Work>();
