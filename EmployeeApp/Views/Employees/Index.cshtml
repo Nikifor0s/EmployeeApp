@@ -33,18 +33,18 @@
                         @*Use ToolTip*@
                         <div class="tooltip">
                             Contact
-                            <div class="tooltiptext">
-                                <span>Mobile Phone: @employee.ContactDetails.MobilePhone</span><hr />
-                                <span>Address: @employee.ContactDetails.Address</span><hr />
-                                <span>City: @employee.ContactDetails.City</span><hr />
-                                <span>Postal Code: @employee.ContactDetails.PostalCode</span>
+                            <div class="tooltiptext tooltip-bottom">
+                                <span><i class="fas fa-mobile"></i> Mobile Phone:<br /> @employee.ContactDetails.MobilePhone</span><hr />
+                                <span><i class="fas fa-map"></i> City:<br /> @employee.ContactDetails.City</span><hr />
+                                <span><i class="fas fa-map-marker-alt"></i> Address:<br /> @employee.ContactDetails.Address</span><hr />
+                                <span><i class="far fa-info-square"></i> Postal Code:<br /> @employee.ContactDetails.PostalCode</span>
                             </div>
                         </div>
                     </div>
                     <div class="employee-details">
                         <div class="tooltip">
                             Personal
-                            <div class="tooltiptext">
+                            <div class="tooltiptext tooltip-bottom">
                                 <span>Sex: @employee.PersonalDetails.Sex</span><hr />
                                 <span>Age: @employee.PersonalDetails.Age</span><hr />
                                 <span>Family Status: @employee.PersonalDetails.CurrentFamilyStatus</span><hr />
