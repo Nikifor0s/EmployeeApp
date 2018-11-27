@@ -1,5 +1,6 @@
 ﻿using EmployeeApp.DAL;
 using EmployeeApp.Models;
+using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
 using System.Data.Entity;
 using System.Linq;

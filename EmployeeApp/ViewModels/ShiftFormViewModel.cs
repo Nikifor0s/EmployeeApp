@@ -1,4 +1,5 @@
 ﻿using EmployeeApp.Models;
+using EmployeeApp.Models.Employees;
 using System.Collections.Generic;
 
 namespace EmployeeApp.ViewModels
