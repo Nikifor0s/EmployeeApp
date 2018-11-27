@@ -1,4 +1,4 @@
-﻿namespace EmployeeApp.Models
+﻿namespace EmployeeApp.Models.Employees
 {
     public class Role
     {

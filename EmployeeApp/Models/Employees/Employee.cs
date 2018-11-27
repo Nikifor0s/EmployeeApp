@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 
-namespace EmployeeApp.Models
+namespace EmployeeApp.Models.Employees
 {
     public class Employee
     {

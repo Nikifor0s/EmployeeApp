@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using EmployeeApp.Models;
+using EmployeeApp.Models.Employees;
 using EmployeeProject.Models;
 
 namespace EmployeeProject.Models.Employees
