@@ -13,6 +13,11 @@ namespace EmployeeApp.ViewModels
 
         //public int DepartmentId { get; set; }
 
+        public int WorkId { get; set; }
+
+        public Employee Employee { get; set; }
+  
+
         public IEnumerable<Department> Departments { get; set; }
     }
 }

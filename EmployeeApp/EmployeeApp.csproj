@@ -239,8 +239,6 @@
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Save.cshtml" />
     <Content Include="Views\Shifts\Create.cshtml" />
-    <Content Include="Views\Shifts\Index.cshtml" />
-    <Content Include="Views\Shifts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

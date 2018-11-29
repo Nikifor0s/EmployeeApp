@@ -6,26 +6,5 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm("Create", "Shifts"))
-{
-    @*@Html.HiddenFor(m => m.Shift.Id)*@
-    @Html.AntiForgeryToken()
-    <h4>Shifts</h4>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Shift.DateTime)
-        @Html.TextBoxFor(m => m.Shift.DateTime, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Shift.DateTime)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Shift.DayShift)
-        @Html.EnumDropDownListFor(m => m.Shift.DayShift, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Shift.DayShift)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Shift.DepartmentId)
-        @Html.DropDownListFor(m => m.Shift.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Shift.DepartmentId)
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-}
+

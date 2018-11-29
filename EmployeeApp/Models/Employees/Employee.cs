@@ -56,7 +56,23 @@ namespace EmployeeApp.Models.Employees
             Requests = new Collection<Request>();
         }
 
+        public Employee(int employeeId)
+        {
+            Id = employeeId;
+        }
+
         //methods
+        //Employee Add Shift to Employee
+
+        public void  AddEmployeeToShift(Shift shift)
+        {
+            var work = new Work(this.Id, shift.Id);
+            Works.Add(work);
+        }
+
+
+
+        //Make A Leave Request 
         public Request MakeARequestForLeave(EmployeeAppDbContext db, Employee employee, Leave leave)
         {
             var request = new Request()

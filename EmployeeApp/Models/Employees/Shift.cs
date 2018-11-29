@@ -28,9 +28,19 @@ namespace EmployeeApp.Models.Employees
 
         public Department Department { get; set; }
 
+        //Constractors
+
         public Shift()
         {
             Works = new Collection<Work>();
+        }
+
+        public Shift(DateTime dateTime, Shifts dayShift, int departmentId)
+        {
+            DateTime = dateTime;
+            DayShift = dayShift;
+            DepartmentId = departmentId;
+            
         }
     }
 }
