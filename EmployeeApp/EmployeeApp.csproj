@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201811262103348_AddRemainingDaysOfLeaveInEmployee.Designer.cs">
       <DependentUpon>201811262103348_AddRemainingDaysOfLeaveInEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811291920162_ChangeAnswerModel.cs" />
+    <Compile Include="Migrations\201811291920162_ChangeAnswerModel.Designer.cs">
+      <DependentUpon>201811291920162_ChangeAnswerModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
     <Compile Include="Models\Employees\Assignment.cs" />
@@ -284,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811262103348_AddRemainingDaysOfLeaveInEmployee.resx">
       <DependentUpon>201811262103348_AddRemainingDaysOfLeaveInEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811291920162_ChangeAnswerModel.resx">
+      <DependentUpon>201811291920162_ChangeAnswerModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
