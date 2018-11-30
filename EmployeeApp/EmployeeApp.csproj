@@ -188,6 +188,14 @@
     <Compile Include="Migrations\201811301220281_PopulateShiftType.Designer.cs">
       <DependentUpon>201811301220281_PopulateShiftType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811301413183_RefactorPropertyShift.cs" />
+    <Compile Include="Migrations\201811301413183_RefactorPropertyShift.Designer.cs">
+      <DependentUpon>201811301413183_RefactorPropertyShift.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811301416521_Refactor.cs" />
+    <Compile Include="Migrations\201811301416521_Refactor.Designer.cs">
+      <DependentUpon>201811301416521_Refactor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
     <Compile Include="Models\Employees\Assignment.cs" />
@@ -211,7 +219,6 @@
     <Compile Include="ViewModels\EmployeesAssignToShiftViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
     <Compile Include="ViewModels\ShiftFormViewModel.cs" />
-    <Compile Include="ViewModels\ValidTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -252,6 +259,7 @@
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Save.cshtml" />
     <Content Include="Views\Shifts\Create.cshtml" />
+    <Content Include="Views\Shifts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -306,6 +314,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811301220281_PopulateShiftType.resx">
       <DependentUpon>201811301220281_PopulateShiftType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301413183_RefactorPropertyShift.resx">
+      <DependentUpon>201811301413183_RefactorPropertyShift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301416521_Refactor.resx">
+      <DependentUpon>201811301416521_Refactor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

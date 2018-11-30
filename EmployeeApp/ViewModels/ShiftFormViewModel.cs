@@ -1,23 +1,46 @@
-﻿using EmployeeApp.Models;
-using EmployeeApp.Models.Employees;
+﻿using EmployeeApp.Models.Employees;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EmployeeApp.ViewModels
 {
     public class ShiftFormViewModel
     {
-        public Shift Shift { get; set; }
-        //public DateTime DateTime { get; set; }
+        public int ShiftId { get; set; }
 
-        //public Shifts DayShift { get; set; }
+        [Required]
+        [Display(Name = "Type Of Shift")]
+        public byte ShiftTypeId { get; set; }
 
-        //public int DepartmentId { get; set; }
+        public IEnumerable<ShiftType> ShiftTypes { get; set; }
 
-        public int WorkId { get; set; }
-
-        public Employee Employee { get; set; }
-  
+        [Required]
+        [Display(Name = "Department")]
+        public int DepartmentId { get; set; }
 
         public IEnumerable<Department> Departments { get; set; }
+
+        [Required]
+        [FutureDate]
+        public string Date { get; set; }
+
+        [Required]
+        [Display(Name = "Day")]
+        public DayOfWeek DayOfWeek { get; set; }
+
+        public DateTime GetDateTime()
+        {
+            return DateTime.Parse(string.Format("{0}", Date));
+        }
+
+        public bool IsValidDayComparedToDate()
+        {
+            DateTime dateTime = DateTime.Parse(Date);
+            if (dateTime.Date.DayOfWeek == DayOfWeek)
+                return true;
+            else
+                return false;
+        }
     }
 }

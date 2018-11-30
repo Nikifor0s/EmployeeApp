@@ -9,19 +9,19 @@ namespace EmployeeApp.Models.Employees
     {
         public int Id { get; set; }
 
-        [Required]
-        public int ShiftTypeId { get; set; }
-
-        public ShiftType DayShift { get; set; }
-
         public DateTime DateTime { get; set; }
 
-        public ICollection<Work> Works { get; set; }
+        [Required]
+        public byte ShiftTypeId { get; set; }
+
+        public ShiftType ShiftType { get; set; }
 
         [Required]
         public int DepartmentId { get; set; }
 
         public Department Department { get; set; }
+
+        public ICollection<Work> Works { get; set; }
 
         //Constractors
 
@@ -30,10 +30,10 @@ namespace EmployeeApp.Models.Employees
             Works = new Collection<Work>();
         }
 
-        public Shift(DateTime dateTime, int dayShiftId, int departmentId)
+        public Shift(DateTime dateTime, byte shiftTypeId, int departmentId)
         {
             DateTime = dateTime;
-            ShiftTypeId = dayShiftId;
+            ShiftTypeId = shiftTypeId;
             DepartmentId = departmentId;
 
             Works = new Collection<Work>();

@@ -1,5 +1,8 @@
 ﻿using EmployeeApp.DAL;
+using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
+using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -17,7 +20,12 @@ namespace EmployeeApp.Controllers
         //Index
         public ActionResult Index()
         {
-            return View();
+            var shifts = _context.Shifts
+                                .Include(s => s.Department)
+                                .Include(s => s.ShiftType)
+                                .Where(s => s.DateTime > DateTime.Now)
+                                .ToList();
+            return View(shifts);
         }
 
         //Create Get
@@ -26,7 +34,8 @@ namespace EmployeeApp.Controllers
         {
             var viewModel = new ShiftFormViewModel
             {
-                Departments = _context.Departments.ToList()
+                Departments = _context.Departments.ToList(),
+                ShiftTypes = _context.ShiftTypes.ToList(),
             };
 
             return View(viewModel);
@@ -34,16 +43,23 @@ namespace EmployeeApp.Controllers
 
         //Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(ShiftFormViewModel viewModel)
         {
-            if (!ModelState.IsValid)
+            if ((!ModelState.IsValid || !viewModel.IsValidDayComparedToDate())
+                || (ModelState.IsValid && !viewModel.IsValidDayComparedToDate()))
             {
                 viewModel.Departments = _context.Departments.ToList();
+                viewModel.ShiftTypes = _context.ShiftTypes.ToList();
 
                 return View("Create", viewModel);
             };
 
-            return View("Index", "Shifts");
+            var shift = new Shift(viewModel.GetDateTime(), viewModel.ShiftTypeId, viewModel.DepartmentId);
+            _context.Shifts.Add(shift);
+            _context.SaveChanges();
+
+            return View("Index");
         }
     }
 }
