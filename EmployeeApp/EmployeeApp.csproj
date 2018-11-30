@@ -180,6 +180,14 @@
     <Compile Include="Migrations\201811291920162_ChangeAnswerModel.Designer.cs">
       <DependentUpon>201811291920162_ChangeAnswerModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811301219530_AddTypeOfShift.cs" />
+    <Compile Include="Migrations\201811301219530_AddTypeOfShift.Designer.cs">
+      <DependentUpon>201811301219530_AddTypeOfShift.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811301220281_PopulateShiftType.cs" />
+    <Compile Include="Migrations\201811301220281_PopulateShiftType.Designer.cs">
+      <DependentUpon>201811301220281_PopulateShiftType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
     <Compile Include="Models\Employees\Assignment.cs" />
@@ -196,6 +204,7 @@
     <Compile Include="Models\Employees\Request.cs" />
     <Compile Include="Models\Employees\Role.cs" />
     <Compile Include="Models\Employees\Shift.cs" />
+    <Compile Include="Models\Employees\ShiftType.cs" />
     <Compile Include="Models\Employees\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
@@ -291,6 +300,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811291920162_ChangeAnswerModel.resx">
       <DependentUpon>201811291920162_ChangeAnswerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301219530_AddTypeOfShift.resx">
+      <DependentUpon>201811301219530_AddTypeOfShift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301220281_PopulateShiftType.resx">
+      <DependentUpon>201811301220281_PopulateShiftType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

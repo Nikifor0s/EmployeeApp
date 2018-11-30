@@ -2,22 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using EmployeeApp.Models.Employees;
 
 namespace EmployeeApp.Models.Employees
 {
-    public enum Shifts
-    {
-        Morning = 1,
-        Evening,
-        Night
-    }
-
     public class Shift
     {
         public int Id { get; set; }
 
-        public Shifts DayShift { get; set; }
+        [Required]
+        public int ShiftTypeId { get; set; }
+
+        public ShiftType DayShift { get; set; }
 
         public DateTime DateTime { get; set; }
 
@@ -35,12 +30,13 @@ namespace EmployeeApp.Models.Employees
             Works = new Collection<Work>();
         }
 
-        public Shift(DateTime dateTime, Shifts dayShift, int departmentId)
+        public Shift(DateTime dateTime, int dayShiftId, int departmentId)
         {
             DateTime = dateTime;
-            DayShift = dayShift;
+            ShiftTypeId = dayShiftId;
             DepartmentId = departmentId;
-            
+
+            Works = new Collection<Work>();
         }
     }
 }

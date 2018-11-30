@@ -1,10 +1,6 @@
 ﻿using EmployeeApp.DAL;
-using EmployeeApp.Models;
-using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 
 namespace EmployeeApp.Controllers
@@ -18,15 +14,14 @@ namespace EmployeeApp.Controllers
             _context = new EmployeeAppDbContext();
         }
 
-        //Index 
+        //Index
         public ActionResult Index()
         {
             return View();
-
         }
 
         //Create Get
-    
+
         public ActionResult Create()
         {
             var viewModel = new ShiftFormViewModel
@@ -36,7 +31,6 @@ namespace EmployeeApp.Controllers
 
             return View(viewModel);
         }
-
 
         //Create
         [HttpPost]
@@ -48,15 +42,6 @@ namespace EmployeeApp.Controllers
 
                 return View("Create", viewModel);
             };
-
-            var work = new Work
-            {
-                ShiftId = viewModel.Shift.Id,
-                EmployeeID = viewModel.Employee.Id
-            };
-
-            _context.Works.Add(work);
-            _context.SaveChanges();
 
             return View("Index", "Shifts");
         }

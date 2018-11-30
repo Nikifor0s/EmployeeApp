@@ -1,5 +1,4 @@
-﻿using EmployeeApp.Models;
-using EmployeeApp.Models.Employees;
+﻿using EmployeeApp.Models.Employees;
 using EmployeeProject.Models.Employees;
 using System.Data.Entity;
 
@@ -23,6 +22,7 @@ namespace EmployeeApp.DAL
         public DbSet<Question> Questions { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<ShiftType> ShiftTypes { get; set; }
 
         public EmployeeAppDbContext() : base("EmployeeAppContext")
         {
