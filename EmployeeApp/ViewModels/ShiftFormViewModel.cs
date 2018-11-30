@@ -36,7 +36,7 @@ namespace EmployeeApp.ViewModels
 
         public bool IsValidDayComparedToDate()
         {
-            DateTime dateTime = DateTime.Parse(Date);
+            DateTime dateTime = GetDateTime();
             if (dateTime.Date.DayOfWeek == DayOfWeek)
                 return true;
             else

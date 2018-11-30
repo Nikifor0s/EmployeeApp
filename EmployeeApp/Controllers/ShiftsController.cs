@@ -31,13 +31,13 @@ namespace EmployeeApp.Controllers
         //Create Get
 
         public ActionResult Create()
-        {
+        {            
             var viewModel = new ShiftFormViewModel
             {
                 Departments = _context.Departments.ToList(),
                 ShiftTypes = _context.ShiftTypes.ToList(),
             };
-
+          
             return View(viewModel);
         }
 
