@@ -1,4 +1,7 @@
-﻿namespace EmployeeProject.Models.Employees
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EmployeeProject.Models.Employees
 {
     //
     public class Answer
@@ -12,15 +15,19 @@
             Excellent
         }
 
-        //[Key]
-        //[ForeignKey("Question")]
-        //public int? QuestionID { get; set; }
+        [Key]
+        [ForeignKey("Question")]
+        [Column(Order = 1)]
+        public int? QuestionID { get; set; }
 
-        public int ID { get; set; }
 
-        public int QuestionID { get; set; }
-
+        [Key]
+        [ForeignKey("Performance")]
+        [Column(Order = 2)]
         public int PerformanceID { get; set; }
+
+
+
 
         public string Text { get; set; }
 

@@ -18,36 +18,15 @@ namespace EmployeeApp.Controllers
             _context = new EmployeeAppDbContext();
         }
 
-        // GET: Shifts
+        //Index 
         public ActionResult Index()
         {
-            var shifts = _context.Shifts
-                .Include(s => s.Department)
-                .Include(s => s.Works)
-                .ToList();
+            return View();
 
-            return View(shifts);
         }
 
-        public ActionResult Details(int? Id)
-        {
-            if (Id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var shift = _context.Shifts.Find(Id);
-
-            if (shift == null)
-                return HttpNotFound();
-
-            var viewModel = new EmployeesAssignToShiftViewModel
-            {
-                Employees = _context.Employees.Where(e => e.Department == shift.Department).ToList(),
-                Shift = shift
-            };
-
-            return View("Details", viewModel);
-        }
-
+        //Create Get
+    
         public ActionResult Create()
         {
             var viewModel = new ShiftFormViewModel
@@ -58,27 +37,28 @@ namespace EmployeeApp.Controllers
             return View(viewModel);
         }
 
+
+        //Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(ShiftFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
                 viewModel.Departments = _context.Departments.ToList();
-                return View("Create", viewModel);
-            }
 
-            var shift = new Shift
-            {
-                DateTime = viewModel.Shift.DateTime,
-                DayShift = viewModel.Shift.DayShift,
-                DepartmentId = viewModel.Shift.DepartmentId
+                return View("Create", viewModel);
             };
 
-            _context.Shifts.Add(shift);
+            var work = new Work
+            {
+                ShiftId = viewModel.Shift.Id,
+                EmployeeID = viewModel.Employee.Id
+            };
+
+            _context.Works.Add(work);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Shifts");
+            return View("Index", "Shifts");
         }
     }
 }

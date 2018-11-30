@@ -16,5 +16,15 @@ namespace EmployeeApp.Models.Employees
         public int ShiftId { get; set; }
 
         public Shift Shift { get; set; }
+
+        //Constructors
+        public Work()
+        {}
+
+        public Work(int employeeId, int shiftId)
+        {
+            ShiftId = shiftId;
+            EmployeeID = employeeId;
+        }
     }
 }
