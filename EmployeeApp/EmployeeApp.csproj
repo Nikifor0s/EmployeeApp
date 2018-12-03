@@ -260,6 +260,8 @@
     <Content Include="Views\Employees\Save.cshtml" />
     <Content Include="Views\Shifts\Create.cshtml" />
     <Content Include="Views\Shifts\Index.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Shifts\Assign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -28,6 +28,7 @@ namespace EmployeeApp.Controllers
             return View(employees);
         }
 
+        //get create
         public ActionResult Save()
         {
             var viewModel = new EmployeeFormViewModel
@@ -71,7 +72,33 @@ namespace EmployeeApp.Controllers
                 Roles = _context.Roles.ToList()
             };
 
-            return View("Save", viewModel);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EmployeeFormViewModel viewModel)
+        {
+            if(!ModelState.IsValid)
+            {
+                viewModel.Departments = _context.Departments.ToList();
+                viewModel.Roles = _context.Roles.ToList();
+
+                return View("Edit", viewModel);
+            }
+
+            var employee = _context.Employees
+                .Include(e => e.Department)
+                .Include(e => e.ContactDetails)
+                .Include(e => e.PersonalDetails)
+                .Include(e => e.Role)   
+                .Single(e => e.Id == viewModel.Employee.Id);
+            employee = viewModel.Employee;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Employees");
+            
         }
     }
 }

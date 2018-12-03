@@ -1,0 +1,20 @@
+﻿@model IEnumerable<EmployeeApp.Models.Employees.Employee>
+@{
+    ViewBag.Title = "Assign";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assign</h2>
+
+
+<ul>
+    @foreach(var employee in Model)
+    {
+    <li>
+        <div>
+            @employee.FullName
+        </div>
+    </li>
+    }
+</ul>
+
