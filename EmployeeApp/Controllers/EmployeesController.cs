@@ -28,7 +28,7 @@ namespace EmployeeApp.Controllers
             return View(employees);
         }
 
-        //get create
+        //get create an Employee (works)
         public ActionResult Save()
         {
             var viewModel = new EmployeeFormViewModel
@@ -40,6 +40,7 @@ namespace EmployeeApp.Controllers
             return View(viewModel);
         }
 
+        //post create an Employee (works)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(EmployeeFormViewModel viewModel)
@@ -58,47 +59,7 @@ namespace EmployeeApp.Controllers
             return RedirectToAction("Index", "Employees");
         }
 
-        public ActionResult Edit(int Id)
-        {
-            var employee = _context.Employees.SingleOrDefault(e => e.Id == Id);
 
-            if (employee == null)
-                return HttpNotFound();
-
-            var viewModel = new EmployeeFormViewModel
-            {
-                Employee = employee,
-                Departments = _context.Departments.ToList(),
-                Roles = _context.Roles.ToList()
-            };
-
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(EmployeeFormViewModel viewModel)
-        {
-            if(!ModelState.IsValid)
-            {
-                viewModel.Departments = _context.Departments.ToList();
-                viewModel.Roles = _context.Roles.ToList();
-
-                return View("Edit", viewModel);
-            }
-
-            var employee = _context.Employees
-                .Include(e => e.Department)
-                .Include(e => e.ContactDetails)
-                .Include(e => e.PersonalDetails)
-                .Include(e => e.Role)   
-                .Single(e => e.Id == viewModel.Employee.Id);
-            employee = viewModel.Employee;
-
-            _context.SaveChanges();
-
-            return RedirectToAction("Index", "Employees");
-            
-        }
+        
     }
 }
