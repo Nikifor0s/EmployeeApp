@@ -1,5 +1,5 @@
 ﻿using EmployeeApp.DAL;
-using EmployeeApp.Models.Employees;
+using EmployeeApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,23 +56,38 @@ namespace EmployeeApp.Models.Employees
             Requests = new Collection<Request>();
         }
 
-        public Employee(int employeeId)
+        public Employee(EmployeeFormViewModel viewModel)
         {
-            Id = employeeId;
+            FirstName = viewModel.FirstName;
+            LastName = viewModel.LastName;
+            RoleId = viewModel.RoleId;
+            DepartmentId = viewModel.DepartmentId;
+            PersonalDetails = viewModel.PersonalDetails;
+            ContactDetails = viewModel.ContactDetails;
+
+            Works = new Collection<Work>();
+        }
+
+        public void EmployeeModify(EmployeeFormViewModel viewModel)
+        {
+            FirstName = viewModel.FirstName;
+            LastName = viewModel.LastName;
+            RoleId = viewModel.RoleId;
+            DepartmentId = viewModel.DepartmentId;
+            PersonalDetails = viewModel.PersonalDetails;
+            ContactDetails = viewModel.ContactDetails;
         }
 
         //methods
         //Employee Add Shift to Employee
 
-        public void  AddEmployeeToShift(Shift shift)
+        public void AddEmployeeToShift(Shift shift)
         {
             var work = new Work(this.Id, shift.Id);
             Works.Add(work);
         }
 
-
-
-        //Make A Leave Request 
+        //Make A Leave Request
         public Request MakeARequestForLeave(EmployeeAppDbContext db, Employee employee, Leave leave)
         {
             var request = new Request()

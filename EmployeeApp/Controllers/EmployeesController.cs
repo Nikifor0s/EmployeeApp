@@ -1,10 +1,11 @@
 ﻿using EmployeeApp.DAL;
+using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace EmployeeApp.Controllers
+namespace ProjectEmployeeApp.Controllers
 {
     public class EmployeesController : Controller
     {
@@ -16,11 +17,11 @@ namespace EmployeeApp.Controllers
         }
 
         // GET: Employees
-        public ViewResult Index()
+        public ActionResult Index()
         {
             var employees = _context.Employees
-                .Include(e => e.ContactDetails)
                 .Include(e => e.PersonalDetails)
+                .Include(e => e.ContactDetails)
                 .Include(e => e.Department)
                 .Include(e => e.Role)
                 .ToList();
@@ -28,50 +29,85 @@ namespace EmployeeApp.Controllers
             return View(employees);
         }
 
-        public ActionResult Save()
+        public ActionResult Create()
         {
             var viewModel = new EmployeeFormViewModel
             {
                 Departments = _context.Departments.ToList(),
-                Roles = _context.Roles.ToList()
+                Roles = _context.Roles.ToList(),
+                Heading = "Add Employee"
             };
-
-            return View(viewModel);
+            return View("EmployeeForm", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(EmployeeFormViewModel viewModel)
+        public ActionResult Create(EmployeeFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
                 viewModel.Departments = _context.Departments.ToList();
                 viewModel.Roles = _context.Roles.ToList();
-
-                return View("Save", viewModel);
+                return View("EmployeeForm", viewModel);
             }
 
-            _context.Employees.Add(viewModel.Employee);
+            var employee = new Employee(viewModel);
+
+            _context.Employees.Add(employee);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Employees");
+            return View("Index", "Employees");
         }
 
         public ActionResult Edit(int Id)
         {
-            var employee = _context.Employees.SingleOrDefault(e => e.Id == Id);
-
-            if (employee == null)
-                return HttpNotFound();
+            var employee = _context.Employees
+                .Include(e => e.ContactDetails)
+                .Include(e => e.PersonalDetails)
+                .Include(e => e.Department)
+                .Include(e => e.Role)
+                .SingleOrDefault(e => e.Id == Id);
 
             var viewModel = new EmployeeFormViewModel
             {
-                Employee = employee,
+                ContactDetails = employee.ContactDetails,
+                PersonalDetails = employee.PersonalDetails,
                 Departments = _context.Departments.ToList(),
-                Roles = _context.Roles.ToList()
+                Roles = _context.Roles.ToList(),
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                RoleId = employee.RoleId,
+                DepartmentId = employee.DepartmentId,
+                Id = employee.Id,
+                Heading = "Update Employee"
             };
 
-            return View("Save", viewModel);
+            return View("EmployeeForm", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(EmployeeFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Roles = _context.Roles.ToList();
+                viewModel.Departments = _context.Departments.ToList();
+                return View("EmployeeForm", viewModel);
+            }
+
+            var employee = _context.Employees
+                .Include(e => e.ContactDetails)
+                .Include(e => e.PersonalDetails)
+                .Include(e => e.Department)
+                .Include(e => e.Role)
+                .Single(e => e.Id == viewModel.Id);
+
+            employee.EmployeeModify(viewModel);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Employees");
         }
     }
 }
