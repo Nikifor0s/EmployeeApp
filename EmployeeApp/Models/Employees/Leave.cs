@@ -9,14 +9,7 @@ namespace EmployeeApp.Models.Employees
     public class Leave
     {
         public int ID { get; set; }
-
-        public enum TypeOfLeave
-        {
-            Vacations = 1,
-            Illness,
-            Pregnancy
-        }
-
+        
         [Display(Name = "Start Date")]
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime StartDateOfLeave { get; set; }
@@ -36,6 +29,8 @@ namespace EmployeeApp.Models.Employees
             }
         }
         public TypeOfLeave Type { get; set; }
+
+        public string Description { get; set; }
 
         //connection 1-N
         public virtual ICollection<Request> Requests { get; set; }

@@ -1,0 +1,49 @@
+﻿@model EmployeeApp.ViewModels.AssignShiftEmployeesViewModel
+@{
+    ViewBag.Title = "AssignEmployeesToShift";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assign Employees To Shift</h2>
+
+<div>
+    @Model.Shift.DateTime
+</div>
+<div>
+    @Model.Shift.Department.Name
+</div>
+<div>
+    @Model.Shift.ShiftType.Name
+</div> <hr />
+<ul>
+    @foreach (var employee in Model.Employees)
+    {
+        <li>
+            <span>
+                @employee.FullName
+            </span>
+            <button data-shift-id="@Model.Shift.Id" class="btn btn-default btn-sm js-toggle-work">Add to Shift?</button> @*Na rwtisoume ton Peri pws tha steilw kai ta duo ids sto script*@
+        </li>
+    }
+</ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-work").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/works", { shiftId: button.attr("data-shift-id") })
+                    .done(function () {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Added");
+                    })
+                    .fail(function () {
+                        alert("Something Failed");
+                    });
+            });
+        });
+    </script>
+}

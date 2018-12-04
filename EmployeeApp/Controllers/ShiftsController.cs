@@ -2,8 +2,11 @@
 using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace EmployeeApp.Controllers
@@ -17,6 +20,33 @@ namespace EmployeeApp.Controllers
             _context = new EmployeeAppDbContext();
         }
 
+        public ActionResult AssignEmployeesToShift(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+           
+            var shift = _context.Shifts
+                .Include(s => s.Department)
+                .Include(s => s.ShiftType)
+                .Include(s => s.Works)
+                .Single(s => s.Id == id);          
+
+            if (shift == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new AssignShiftEmployeesViewModel
+            {
+                Shift = shift,
+                Employees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId).ToList()
+            };
+
+            return View(viewModel);
+
+        }
 
         //Index (works)
         public ActionResult Index()

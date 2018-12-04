@@ -55,12 +55,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -132,9 +141,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\api\WorksController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
     <Compile Include="DAL\EmployeeAppDbContext.cs" />
+    <Compile Include="Dtos\WorkDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,6 +206,10 @@
     <Compile Include="Migrations\201811301416521_Refactor.Designer.cs">
       <DependentUpon>201811301416521_Refactor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812042342428_AddColumnDescriptionToLeave.cs" />
+    <Compile Include="Migrations\201812042342428_AddColumnDescriptionToLeave.Designer.cs">
+      <DependentUpon>201812042342428_AddColumnDescriptionToLeave.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
     <Compile Include="Models\Employees\Assignment.cs" />
@@ -211,10 +227,11 @@
     <Compile Include="Models\Employees\Role.cs" />
     <Compile Include="Models\Employees\Shift.cs" />
     <Compile Include="Models\Employees\ShiftType.cs" />
+    <Compile Include="Models\Employees\TypeOfLeave.cs" />
     <Compile Include="Models\Employees\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AssignShiftEmployeesViewModel.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
-    <Compile Include="ViewModels\EmployeesAssignToShiftViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
     <Compile Include="ViewModels\ShiftFormViewModel.cs" />
   </ItemGroup>
@@ -258,6 +275,7 @@
     <Content Include="Views\Shifts\Index.cshtml" />
     <Content Include="Views\Employees\Update.cshtml" />
     <Content Include="Views\Employees\EmployeeForm.cshtml" />
+    <Content Include="Views\Shifts\AssignEmployeesToShift.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811301416521_Refactor.resx">
       <DependentUpon>201811301416521_Refactor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812042342428_AddColumnDescriptionToLeave.resx">
+      <DependentUpon>201812042342428_AddColumnDescriptionToLeave.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
