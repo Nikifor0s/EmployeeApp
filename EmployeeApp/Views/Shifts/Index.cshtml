@@ -18,6 +18,9 @@
             <div>
                 @shift.ShiftType.Name
             </div>
+            <div>
+                @Html.ActionLink("Assign Employees","Assign","Shifts", new { Id = shift.Id})
+            </div>
         </li>
     }
 </ul>

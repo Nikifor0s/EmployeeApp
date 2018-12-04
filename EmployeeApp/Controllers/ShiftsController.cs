@@ -17,27 +17,28 @@ namespace EmployeeApp.Controllers
             _context = new EmployeeAppDbContext();
         }
 
-        //Index
+
+        //Index (works)
         public ActionResult Index()
         {
             var shifts = _context.Shifts
                                 .Include(s => s.Department)
                                 .Include(s => s.ShiftType)
+                                .Include(s => s.Works)
                                 .Where(s => s.DateTime > DateTime.Now)
                                 .ToList();
             return View(shifts);
         }
 
-        //Create Get
-
+        //Create Get (works)
         public ActionResult Create()
-        {
+        {            
             var viewModel = new ShiftFormViewModel
             {
                 Departments = _context.Departments.ToList(),
                 ShiftTypes = _context.ShiftTypes.ToList(),
             };
-
+          
             return View(viewModel);
         }
 
@@ -59,7 +60,7 @@ namespace EmployeeApp.Controllers
             _context.Shifts.Add(shift);
             _context.SaveChanges();
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
