@@ -7,8 +7,10 @@
 
 <h2>Assign Employees To Shift</h2>
 
-
-<form>
+@using (Html.BeginForm("NewWork", "Shifts"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Shift.Id)
     <div>
         @Model.Shift.DateTime
     </div>
@@ -20,37 +22,27 @@
     </div> <hr />
 
     <div class="form-group">
-        <label>Employee</label>
-        <input id="employee" type="text" value="" class="form-control" />
+        @Html.LabelFor(m => m.EmployeeId)
+        @Html.DropDownListFor(m => m.EmployeeId, new SelectList(Model.Employees, "Id", "FullName"), "Select", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.EmployeeId)
+
     </div>
 
     <button class="btn btn-primary">Submit</button>
-</form>
-
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
-            var employees = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('FullName'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                remote: {
-                    url: '/api/employees?query=%QUERY',
-                    wildcard: '%QUERY'
-                }
-            });
-
-            $('#employee').typeahead({
-                minLength: 3,
-                highlight: true
-            }, {
-                    name: 'employees',
-                    display: 'FullName',
-                    source: employees
-                });
-        });
-    </script>
+    <div>
+        @foreach(var employee in Model.WorkingEmployees)
+        {
+            <div>
+                @employee.FullName
+            </div>
+        }
+    </div>
 }
+
+
+
+
+
 
 
 

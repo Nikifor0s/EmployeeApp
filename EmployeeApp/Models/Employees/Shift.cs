@@ -38,5 +38,7 @@ namespace EmployeeApp.Models.Employees
 
             Works = new Collection<Work>();
         }
+
+
     }
 }

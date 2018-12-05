@@ -20,34 +20,65 @@ namespace EmployeeApp.Controllers
             _context = new EmployeeAppDbContext();
         }
 
-       public ActionResult NewWork(int id)
+        //get 
+        public ActionResult NewWork(int? id)
         {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             var shift = _context.Shifts
                 .Include(s => s.Department)
                 .Include(s => s.ShiftType)
-                .Single(s => s.Id == id);
+                .SingleOrDefault(s => s.Id == id);
 
-            var employees = _context.Employees
-                .Where(e => e.DepartmentId == shift.DepartmentId).ToList();
+            if(shift == null)
+            {
+                return HttpNotFound();
+            }
+
+            var employees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && !e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
+
+            var workingEmployees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
 
             var viewModel = new AssignShiftEmployeesViewModel
             {
                 Shift = shift,
-                Employees = employees
+                Employees = employees,
+                WorkingEmployees = workingEmployees
             };
 
+
+
+
             return View(viewModel);
+        }
+
+        //post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NewWork(AssignShiftEmployeesViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Employees = _context.Employees.Where(e => e.DepartmentId == viewModel.Shift.DepartmentId).ToList();
+                return View("NewWork", viewModel);
+            }
+
+            var work = new Work(viewModel.EmployeeId, viewModel.Shift.Id);
+            _context.Works.Add(work);
+            _context.SaveChanges();
+
+            return RedirectToAction("NewWork",viewModel.Shift.Id);
         }
 
         public ActionResult AddAWorkWeek()
         {
             var viewModel = new WorkDayViewModel
             {
-                Departments = _context.Departments.ToList(),
-                Heading = "Create a work week"
+                Departments = _context.Departments.ToList()
             };
 
-            return View("AddAWorkDay",viewModel);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -58,62 +89,29 @@ namespace EmployeeApp.Controllers
                 .Include(s => s.Department)
                 .Include(s => s.ShiftType)
                 .Any(s => s.DateTime == viewModel.WorkDate && s.DepartmentId == viewModel.DepartmentId);
+
+
             if (!shift)
             {
-                for(int j = 0; j<5; j++)
+                for(int j = 0; j<viewModel.NumberOfWorkDays; j++)
                 {
                     
-                    for (byte i = 1; i <= 3; i++)
-                    {
+                    for (byte i = 1; i <= viewModel.NumbersOfShifts; i++)
+                    {                       
                         var newShift = new Shift(viewModel.WorkDate.AddDays(j), i, viewModel.DepartmentId);
                         _context.Shifts.Add(newShift);
                     }
+
                 }
-                
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return View("Index");
             }
 
             viewModel.Departments = _context.Departments.ToList();
-            viewModel.Heading = "Create a work week";
-            return View("AddAWorkDay",viewModel);
-        }
-
-        //get
-        public ActionResult AddAWorkDay()
-        {
-            var viewModel = new WorkDayViewModel
-            {
-                Departments = _context.Departments.ToList(),
-                Heading = "Create a work day"
-            };
-
             return View(viewModel);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddAWorkDay(WorkDayViewModel viewModel)
-        {
-            var shift = _context.Shifts
-                .Include(s => s.Department)
-                .Include(s => s.ShiftType)
-                .Any(s => s.DateTime == viewModel.WorkDate && s.DepartmentId == viewModel.DepartmentId);
-            if (!shift)
-            {
-                for (byte i = 1; i <= 3; i++)
-                {
-                    var newShift = new Shift(viewModel.WorkDate, i, viewModel.DepartmentId);
-                    _context.Shifts.Add(newShift);
-                }
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            viewModel.Departments = _context.Departments.ToList();
-            viewModel.Heading = "Create a work day";
-            return View(viewModel);
-        }
+       
 
         //Index (works)
         public ActionResult Index()

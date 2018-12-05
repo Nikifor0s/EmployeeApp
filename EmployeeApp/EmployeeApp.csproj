@@ -142,7 +142,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\api\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\LeavesController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
@@ -286,12 +285,12 @@
     <Content Include="Views\Employees\EmployeeForm.cshtml" />
     <Content Include="Views\Employees\RequestLeave.cshtml" />
     <Content Include="Views\Leaves\Index.cshtml" />
-    <Content Include="Views\Works\New.cshtml" />
     <Content Include="Views\Shifts\NewWork.cshtml" />
-    <Content Include="Views\Shifts\AddAWorkDay.cshtml" />
+    <Content Include="Views\Shifts\AddAWorkWeek.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\api\" />
     <Folder Include="Dtos\" />
   </ItemGroup>
   <ItemGroup>

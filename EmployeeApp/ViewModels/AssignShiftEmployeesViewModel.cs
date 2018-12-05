@@ -10,6 +10,12 @@ namespace EmployeeApp.ViewModels
     {
         public Shift Shift { get; set; }
 
+        public int EmployeeId { get; set; }
+
         public ICollection<Employee> Employees { get; set; }
+
+        public ICollection<Employee> WorkingEmployees { get; set; }
+
+        
     }
 }

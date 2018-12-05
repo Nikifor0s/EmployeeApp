@@ -22,22 +22,10 @@ namespace EmployeeApp.ViewModels
 
         public IEnumerable<Department> Departments { get; set; }
 
-        public string Heading { get; set; }
+        public int NumberOfWorkDays { get; set; }
+        
+        public int NumbersOfShifts { get; set; }
 
-        public string Action
-        {
-            get
-            {
-                Expression<Func<ShiftsController, ActionResult>> addAWorkDay =
-                    (c => c.AddAWorkDay(this));
-                Expression<Func<ShiftsController, ActionResult>> addAWorkWeek =
-                    (c => c.AddAWorkWeek(this));
-
-                var action = (Id != 0) ? addAWorkDay : addAWorkWeek;
-                var actionName = (action.Body as MethodCallExpression).Method.Name;
-
-                return actionName;
-            }
-        }
+        
     }
 }
