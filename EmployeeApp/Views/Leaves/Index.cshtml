@@ -1,0 +1,26 @@
+﻿@model IEnumerable<EmployeeApp.Models.Employees.Request>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul>
+    @foreach(var request in Model)
+    {
+        <li>
+            <div>
+                @request.Employee.FullName
+            </div>          
+            <div>
+                @request.Leave.Type
+            </div>
+            <div>
+                @request.Leave.Description
+            </div>
+            <div>
+                @request.Leave.StartDateOfLeave - @request.Leave.EndDateOfLeave
+            </div>
+        </li>
+    }
+</ul>
+

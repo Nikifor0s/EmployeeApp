@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -34,5 +35,10 @@ namespace EmployeeApp.Models.Employees
 
         //connection 1-N
         public virtual ICollection<Request> Requests { get; set; }
+
+        public Leave()
+        {
+            Requests = new Collection<Request>();
+        }
     }
 }

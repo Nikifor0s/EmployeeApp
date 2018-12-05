@@ -88,31 +88,22 @@ namespace EmployeeApp.Models.Employees
         }
 
         //Make A Leave Request
-        public Request MakeARequestForLeave(EmployeeAppDbContext db, Employee employee, Leave leave)
+        public Request MakeARequestForLeave(Leave leave)
         {
             var request = new Request()
             {
-                Employee = employee,
+                Employee = this,
                 Leave = leave,
                 DateRequestedLeave = DateTime.Now.Date,
                 IsAccepted = true
             };
-            if (employee.RemaingDaysOfLeave < leave.HowManyDays || leave.HowManyDays <= 0)
+            if (RemaingDaysOfLeave < leave.HowManyDays || leave.HowManyDays <= 0)
                 request.IsAccepted = false;
 
             if (request.IsAccepted)
-                employee.RemaingDaysOfLeave -= leave.HowManyDays;
+                RemaingDaysOfLeave -= leave.HowManyDays;
 
-            try
-            {
-                db.Leaves.Add(leave);
-                db.Requests.Add(request);
-                db.SaveChanges();
-            }
-            catch (DataException e)
-            {
-                throw new DataException(e.Message);
-            }
+            
 
             return request;
         }

@@ -3,6 +3,7 @@ using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace ProjectEmployeeApp.Controllers
@@ -15,6 +16,38 @@ namespace ProjectEmployeeApp.Controllers
         public EmployeesController()
         {
             _context = new EmployeeAppDbContext();
+        }
+
+        public ActionResult RequestLeave()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RequestLeave([Bind(Include = "StartDateOfLeave,EndDateOfLeave,Type,Description")] Leave leave, int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employee employee = _context.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                var request = employee.MakeARequestForLeave(leave); 
+               
+
+                _context.Leaves.Add(leave);
+                _context.Requests.Add(request);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(leave);
         }
 
         // GET: Employees

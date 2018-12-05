@@ -144,6 +144,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\api\WorksController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\LeavesController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
     <Compile Include="DAL\EmployeeAppDbContext.cs" />
     <Compile Include="Dtos\WorkDto.cs" />
@@ -276,6 +277,8 @@
     <Content Include="Views\Employees\Update.cshtml" />
     <Content Include="Views\Employees\EmployeeForm.cshtml" />
     <Content Include="Views\Shifts\AssignEmployeesToShift.cshtml" />
+    <Content Include="Views\Employees\RequestLeave.cshtml" />
+    <Content Include="Views\Leaves\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
