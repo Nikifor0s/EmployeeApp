@@ -1,0 +1,46 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "New Work Form";
+}
+
+<h2>New Work Form</h2>
+
+<form>
+    <div class="form-group">
+        <label>Shift</label>
+        <input id="shift" type="text" value="" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Employee</label>
+        <input type="text" value="" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+</form>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var shifts = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('ShiftType'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,               
+                remote: {
+                    url: '/api/shifts?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#shift').typeahead({
+                    minLength: 1,
+                    highlight: true
+            }, {
+                name: 'shifts',
+                display: 'ShiftType',
+                source: shifts
+            });
+        });
+    </script>
+}
+

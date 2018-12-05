@@ -20,32 +20,99 @@ namespace EmployeeApp.Controllers
             _context = new EmployeeAppDbContext();
         }
 
-        public ActionResult AssignEmployeesToShift(int? id)
+       public ActionResult NewWork(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-           
             var shift = _context.Shifts
                 .Include(s => s.Department)
                 .Include(s => s.ShiftType)
-                .Include(s => s.Works)
-                .Single(s => s.Id == id);          
+                .Single(s => s.Id == id);
 
-            if (shift == null)
-            {
-                return HttpNotFound();
-            }
+            var employees = _context.Employees
+                .Where(e => e.DepartmentId == shift.DepartmentId).ToList();
 
             var viewModel = new AssignShiftEmployeesViewModel
             {
                 Shift = shift,
-                Employees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId).ToList()
+                Employees = employees
             };
 
             return View(viewModel);
+        }
 
+        public ActionResult AddAWorkWeek()
+        {
+            var viewModel = new WorkDayViewModel
+            {
+                Departments = _context.Departments.ToList(),
+                Heading = "Create a work week"
+            };
+
+            return View("AddAWorkDay",viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddAWorkWeek(WorkDayViewModel viewModel)
+        {
+            var shift = _context.Shifts
+                .Include(s => s.Department)
+                .Include(s => s.ShiftType)
+                .Any(s => s.DateTime == viewModel.WorkDate && s.DepartmentId == viewModel.DepartmentId);
+            if (!shift)
+            {
+                for(int j = 0; j<5; j++)
+                {
+                    
+                    for (byte i = 1; i <= 3; i++)
+                    {
+                        var newShift = new Shift(viewModel.WorkDate.AddDays(j), i, viewModel.DepartmentId);
+                        _context.Shifts.Add(newShift);
+                    }
+                }
+                
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            viewModel.Departments = _context.Departments.ToList();
+            viewModel.Heading = "Create a work week";
+            return View("AddAWorkDay",viewModel);
+        }
+
+        //get
+        public ActionResult AddAWorkDay()
+        {
+            var viewModel = new WorkDayViewModel
+            {
+                Departments = _context.Departments.ToList(),
+                Heading = "Create a work day"
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddAWorkDay(WorkDayViewModel viewModel)
+        {
+            var shift = _context.Shifts
+                .Include(s => s.Department)
+                .Include(s => s.ShiftType)
+                .Any(s => s.DateTime == viewModel.WorkDate && s.DepartmentId == viewModel.DepartmentId);
+            if (!shift)
+            {
+                for (byte i = 1; i <= 3; i++)
+                {
+                    var newShift = new Shift(viewModel.WorkDate, i, viewModel.DepartmentId);
+                    _context.Shifts.Add(newShift);
+                }
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            viewModel.Departments = _context.Departments.ToList();
+            viewModel.Heading = "Create a work day";
+            return View(viewModel);
         }
 
         //Index (works)
@@ -56,7 +123,10 @@ namespace EmployeeApp.Controllers
                                 .Include(s => s.ShiftType)
                                 .Include(s => s.Works)
                                 .Where(s => s.DateTime > DateTime.Now)
+                                .OrderBy(s => s.DateTime)
                                 .ToList();
+
+            
             return View(shifts);
         }
 

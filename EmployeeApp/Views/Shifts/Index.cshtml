@@ -5,6 +5,9 @@
 }
 
 <h2>Index</h2>
+<p>
+    @Html.ActionLink("Create a Shift", "Create") - @Html.ActionLink("Create a Work Day", "AddAWorkDay") -  @Html.ActionLink("Create a Work Week", "AddAWorkWeek")
+</p>
 <ul>
     @foreach (var shift in Model)
     {
@@ -19,7 +22,7 @@
                 @shift.ShiftType.Name
             </div>
             <div>
-                @Html.ActionLink("Assign Employees","AssignEmployeesToShift", new { Id = shift.Id})
+                @Html.ActionLink("Assign Employees","NewWork", new { Id = shift.Id})
             </div>
         </li>
     }

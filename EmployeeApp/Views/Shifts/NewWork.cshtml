@@ -1,0 +1,57 @@
+﻿@model EmployeeApp.ViewModels.AssignShiftEmployeesViewModel
+
+@{
+    ViewBag.Title = "AssignEmployeesToShift";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assign Employees To Shift</h2>
+
+
+<form>
+    <div>
+        @Model.Shift.DateTime
+    </div>
+    <div>
+        @Model.Shift.Department.Name
+    </div>
+    <div>
+        @Model.Shift.ShiftType.Name
+    </div> <hr />
+
+    <div class="form-group">
+        <label>Employee</label>
+        <input id="employee" type="text" value="" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+</form>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var employees = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('FullName'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/employees?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#employee').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                    name: 'employees',
+                    display: 'FullName',
+                    source: employees
+                });
+        });
+    </script>
+}
+
+
+
+

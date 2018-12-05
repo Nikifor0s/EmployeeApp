@@ -142,12 +142,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\api\WorksController.cs" />
+    <Compile Include="Controllers\api\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\LeavesController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
+    <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="DAL\EmployeeAppDbContext.cs" />
-    <Compile Include="Dtos\WorkDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,16 +235,20 @@
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
     <Compile Include="ViewModels\ShiftFormViewModel.cs" />
+    <Compile Include="ViewModels\WorkDayViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -258,6 +262,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -276,12 +284,15 @@
     <Content Include="Views\Shifts\Index.cshtml" />
     <Content Include="Views\Employees\Update.cshtml" />
     <Content Include="Views\Employees\EmployeeForm.cshtml" />
-    <Content Include="Views\Shifts\AssignEmployeesToShift.cshtml" />
     <Content Include="Views\Employees\RequestLeave.cshtml" />
     <Content Include="Views\Leaves\Index.cshtml" />
+    <Content Include="Views\Works\New.cshtml" />
+    <Content Include="Views\Shifts\NewWork.cshtml" />
+    <Content Include="Views\Shifts\AddAWorkDay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
