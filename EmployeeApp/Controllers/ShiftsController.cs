@@ -106,7 +106,7 @@ namespace EmployeeApp.Controllers
                     }
                 }
                 _context.SaveChanges();
-                return View("Index");
+                return RedirectToAction("Index");
             }
 
             viewModel.Departments = _context.Departments.ToList();
