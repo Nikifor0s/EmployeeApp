@@ -30,7 +30,6 @@ namespace EmployeeApp.Models.Employees
 
         public Department Department { get; set; }
 
-        public bool IsRemoved { get; set; } 
 
         [Required]
         public int RoleId { get; set; }

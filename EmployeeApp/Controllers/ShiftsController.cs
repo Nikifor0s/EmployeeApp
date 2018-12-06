@@ -34,9 +34,9 @@ namespace EmployeeApp.Controllers
                 return HttpNotFound();
             }
 
-            var employees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && e.IsRemoved && e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
+            var employees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && !e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
 
-            var workingEmployees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && !e.IsRemoved && e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
+            var workingEmployees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
 
             var viewModel = new AssignShiftEmployeesViewModel
             {
