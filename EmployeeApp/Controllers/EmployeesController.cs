@@ -90,7 +90,7 @@ namespace ProjectEmployeeApp.Controllers
             _context.Employees.Add(employee);
             _context.SaveChanges();
 
-            return View("Index", "Employees");
+            return RedirectToAction("Index", "Employees");
         }
 
         public ActionResult Edit(int Id)

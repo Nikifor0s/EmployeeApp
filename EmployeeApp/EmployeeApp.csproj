@@ -142,7 +142,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\api\ShiftsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\LeavesController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
@@ -210,10 +209,6 @@
     <Compile Include="Migrations\201812042342428_AddColumnDescriptionToLeave.cs" />
     <Compile Include="Migrations\201812042342428_AddColumnDescriptionToLeave.Designer.cs">
       <DependentUpon>201812042342428_AddColumnDescriptionToLeave.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812052219382_AddIsRemoved.cs" />
-    <Compile Include="Migrations\201812052219382_AddIsRemoved.Designer.cs">
-      <DependentUpon>201812052219382_AddIsRemoved.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
@@ -295,6 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\api\" />
     <Folder Include="Dtos\" />
   </ItemGroup>
   <ItemGroup>
@@ -355,9 +351,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812042342428_AddColumnDescriptionToLeave.resx">
       <DependentUpon>201812042342428_AddColumnDescriptionToLeave.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812052219382_AddIsRemoved.resx">
-      <DependentUpon>201812052219382_AddIsRemoved.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
