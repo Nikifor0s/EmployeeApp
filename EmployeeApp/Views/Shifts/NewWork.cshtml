@@ -25,25 +25,42 @@
         @Html.LabelFor(m => m.EmployeeId)
         @Html.DropDownListFor(m => m.EmployeeId, new SelectList(Model.Employees, "Id", "FullName"), "Select", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.EmployeeId)
-
     </div>
 
     <button class="btn btn-primary">Submit</button>
-    <div>
-        @foreach(var employee in Model.WorkingEmployees)
+    <ul>
+        @foreach (var employee in Model.WorkingEmployees)
         {
-            <div>
+            <li>
                 @employee.FullName
-            </div>
+                <a href="#" class="js-remove-employee" data-employee-id="@employee.Id">Remove</a>
+            </li>
+
         }
-    </div>
+    </ul>
 }
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".js-remove-employee").click(function (e) {
+                var link = $(e.target);
+                if (confirm("Are you sure y want to delete this employee?")) {
+                    $.ajax({
+                        url: "/api/Shifts/" + link.attr("data-employee-id"),
+                        method: "DELETE"
+                    })
+                        .done(function () {
+                            link.parents("li").fadeOut(function () {
+                                $(this).remove();
+                            });
+                        })
+                        .fail(function () {
+                            alert("Something Failed")
+                        });
+                }
+            });
+        });
+    </script>
 
-
-
-
-
-
-
-
+}

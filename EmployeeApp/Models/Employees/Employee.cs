@@ -1,10 +1,8 @@
-﻿using EmployeeApp.DAL;
-using EmployeeApp.ViewModels;
+﻿using EmployeeApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
 
 namespace EmployeeApp.Models.Employees
 {
@@ -32,6 +30,8 @@ namespace EmployeeApp.Models.Employees
         public int DepartmentId { get; set; }
 
         public Department Department { get; set; }
+
+        public bool IsRemoved { get; set; }
 
         [Required]
         public int RoleId { get; set; }
@@ -102,8 +102,6 @@ namespace EmployeeApp.Models.Employees
 
             if (request.IsAccepted)
                 RemaingDaysOfLeave -= leave.HowManyDays;
-
-            
 
             return request;
         }

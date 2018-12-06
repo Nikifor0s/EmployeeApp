@@ -2,8 +2,6 @@
 using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -20,7 +18,7 @@ namespace EmployeeApp.Controllers
             _context = new EmployeeAppDbContext();
         }
 
-        //get 
+        //get
         public ActionResult NewWork(int? id)
         {
             if (id == null)
@@ -31,14 +29,14 @@ namespace EmployeeApp.Controllers
                 .Include(s => s.ShiftType)
                 .SingleOrDefault(s => s.Id == id);
 
-            if(shift == null)
+            if (shift == null)
             {
                 return HttpNotFound();
             }
 
-            var employees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && !e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
+            var employees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && e.IsRemoved && e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
 
-            var workingEmployees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
+            var workingEmployees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && !e.IsRemoved && e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
 
             var viewModel = new AssignShiftEmployeesViewModel
             {
@@ -46,9 +44,6 @@ namespace EmployeeApp.Controllers
                 Employees = employees,
                 WorkingEmployees = workingEmployees
             };
-
-
-
 
             return View(viewModel);
         }
@@ -64,11 +59,21 @@ namespace EmployeeApp.Controllers
                 return View("NewWork", viewModel);
             }
 
+            var employee = viewModel.EmployeeId;
+            var shift = viewModel.Shift.Id;
+
+            var exist = _context.Works.Any(w => w.EmployeeID == employee && w.ShiftId == shift);
+
+            if (exist)
+            {
+                return RedirectToAction("");
+            }
+
             var work = new Work(viewModel.EmployeeId, viewModel.Shift.Id);
             _context.Works.Add(work);
             _context.SaveChanges();
 
-            return RedirectToAction("NewWork",viewModel.Shift.Id);
+            return RedirectToAction("NewWork", viewModel.Shift.Id);
         }
 
         public ActionResult AddAWorkWeek()
@@ -90,18 +95,15 @@ namespace EmployeeApp.Controllers
                 .Include(s => s.ShiftType)
                 .Any(s => s.DateTime == viewModel.WorkDate && s.DepartmentId == viewModel.DepartmentId);
 
-
             if (!shift)
             {
-                for(int j = 0; j<viewModel.NumberOfWorkDays; j++)
+                for (int j = 0; j < viewModel.NumberOfWorkDays; j++)
                 {
-                    
                     for (byte i = 1; i <= viewModel.NumbersOfShifts; i++)
-                    {                       
+                    {
                         var newShift = new Shift(viewModel.WorkDate.AddDays(j), i, viewModel.DepartmentId);
                         _context.Shifts.Add(newShift);
                     }
-
                 }
                 _context.SaveChanges();
                 return View("Index");
@@ -110,8 +112,6 @@ namespace EmployeeApp.Controllers
             viewModel.Departments = _context.Departments.ToList();
             return View(viewModel);
         }
-
-       
 
         //Index (works)
         public ActionResult Index()
@@ -124,19 +124,18 @@ namespace EmployeeApp.Controllers
                                 .OrderBy(s => s.DateTime)
                                 .ToList();
 
-            
             return View(shifts);
         }
 
         //Create Get (works)
         public ActionResult Create()
-        {            
+        {
             var viewModel = new ShiftFormViewModel
             {
                 Departments = _context.Departments.ToList(),
                 ShiftTypes = _context.ShiftTypes.ToList(),
             };
-          
+
             return View(viewModel);
         }
 
