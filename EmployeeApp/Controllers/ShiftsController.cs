@@ -34,9 +34,15 @@ namespace EmployeeApp.Controllers
                 return HttpNotFound();
             }
 
-            var employees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && !e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
+            var employees = _context.Employees
+                .Where(e => e.DepartmentId == shift.DepartmentId &&
+                !e.Works.Any(w => w.ShiftId == shift.Id))
+                .ToList();
 
-            var workingEmployees = _context.Employees.Where(e => e.DepartmentId == shift.DepartmentId && e.Works.Any(w => w.ShiftId == shift.Id)).ToList();
+            var workingEmployees = _context.Employees
+                .Where(e => e.DepartmentId == shift.DepartmentId &&
+                e.Works.Any(w => w.ShiftId == shift.Id))
+                .ToList();
 
             var viewModel = new AssignShiftEmployeesViewModel
             {
@@ -55,7 +61,9 @@ namespace EmployeeApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Employees = _context.Employees.Where(e => e.DepartmentId == viewModel.Shift.DepartmentId).ToList();
+                viewModel.Employees = _context.Employees
+                    .Where(e => e.DepartmentId == viewModel.Shift.DepartmentId)
+                    .ToList();
                 return View("NewWork", viewModel);
             }
 
