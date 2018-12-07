@@ -23,7 +23,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">My Actions <i class="fa fa-link fa-1x"></i></div>
-                <div>  @Html.ActionLink("My upcoming Shifts", "Index", "Shifts")</div>
+                <div>  @Html.ActionLink("My upcoming Shifts", "MyShifts", new { id = Model.Id })</div>
                 <div> My Leave Requests</div>
                 <div> My Evaluations</div>
                 <div> My Projects</div>
@@ -31,8 +31,8 @@
 
 
             <ul class="list-group">
-                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Remaining Days Of Leave</strong></span> 23</li>
+                <li class="list-group-item text-muted">Statistics <i class="fa fa-dashboard fa-1x"></i></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Remaining Days Of Leave</strong></span> @Model.RemainingDaysOfLeave</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Shifts</strong></span> 13</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Projects</strong></span> 37</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Evaluation Grade</strong></span> 78 %</li>
@@ -43,9 +43,8 @@
         </div><!--/col-3-->
         <div class="col-sm-9">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Details</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
+                <li class="active"><a data-toggle="tab" href="#home">Edit</a></li class="active">
+                <li ><a data-toggle="tab" href="#messages">Announcements</a></li>
             </ul>
 
             <div class="tab-content">

@@ -18,6 +18,8 @@ namespace EmployeeApp.Controllers
             _context = new EmployeeAppDbContext();
         }
 
+        
+
         //get
         public ActionResult NewWork(int? id)
         {
