@@ -1,6 +1,7 @@
 ﻿using EmployeeApp.DAL;
 using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -16,6 +17,27 @@ namespace ProjectEmployeeApp.Controllers
         public EmployeesController()
         {
             _context = new EmployeeAppDbContext();
+        }
+
+        public ActionResult MyShifts(int? Id)
+        {
+            if (Id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var employee = _context.Employees
+                .Include(e => e.Works)
+                .Include(e => e.Works.Select(w => w.Shift.ShiftType))
+                .Include(e => e.Role)
+                .Include(e => e.Department)
+                .Include(e => e.ContactDetails)
+                .Include(e => e.PersonalDetails)
+                .Single(e => e.Id == Id);
+
+            if (employee == null)
+                return HttpNotFound();
+
+
+            return View(employee);
         }
 
         public ActionResult RequestLeave()
@@ -70,6 +92,7 @@ namespace ProjectEmployeeApp.Controllers
                 Departments = _context.Departments.ToList(),
                 Roles = _context.Roles.ToList(),
                 Heading = "Add Employee"
+                
             };
             return View("EmployeeForm", viewModel);
         }

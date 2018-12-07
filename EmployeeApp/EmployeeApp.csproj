@@ -287,6 +287,7 @@
     <Content Include="Views\Leaves\Index.cshtml" />
     <Content Include="Views\Shifts\NewWork.cshtml" />
     <Content Include="Views\Shifts\AddAWorkWeek.cshtml" />
+    <Content Include="Views\Employees\MyShifts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
