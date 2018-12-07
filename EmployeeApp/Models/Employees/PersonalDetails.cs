@@ -32,6 +32,7 @@ namespace EmployeeApp.Models.Employees
         public int NumberOfChildren { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
 
         public int Age
