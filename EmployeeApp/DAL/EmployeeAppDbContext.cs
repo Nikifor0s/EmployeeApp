@@ -50,9 +50,9 @@ namespace EmployeeApp.DAL
                 .WithRequired(l => l.Leave)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Work>()
+            modelBuilder.Entity<Employee>()
                 .HasMany(e => e.Assignments)
-                .WithRequired(e => e.Work)
+                .WithRequired(e => e.Employee)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Project>()
