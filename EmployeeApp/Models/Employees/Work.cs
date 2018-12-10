@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeApp.Models.Employees
@@ -18,6 +19,8 @@ namespace EmployeeApp.Models.Employees
         public Shift Shift { get; set; }
 
         public bool IsCanceled { get; set; }
+
+        public ICollection<Assignment> Assignments { get; set; }
 
         //Constructors
         public Work()

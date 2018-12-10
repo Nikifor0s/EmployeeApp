@@ -48,7 +48,7 @@ namespace EmployeeApp.Models.Employees
 
         public int RemaingDaysOfLeave { get; set; } = 23;
 
-        public ICollection<Assignment> Assignments { get; set; }
+
 
         public Employee()
         {
