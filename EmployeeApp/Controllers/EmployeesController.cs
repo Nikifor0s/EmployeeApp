@@ -136,7 +136,9 @@ namespace ProjectEmployeeApp.Controllers
                 RoleId = employee.RoleId,
                 DepartmentId = employee.DepartmentId,
                 Id = employee.Id,
-                Heading = "Update Employee"
+                Heading = "Update Employee",
+                Salary = employee.Salary,
+                RemainingDaysOfLeave = employee.RemaingDaysOfLeave
             };
 
             return View("EmployeeForm", viewModel);

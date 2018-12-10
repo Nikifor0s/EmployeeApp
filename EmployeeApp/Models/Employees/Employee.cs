@@ -78,6 +78,8 @@ namespace EmployeeApp.Models.Employees
             DepartmentId = viewModel.DepartmentId;
             PersonalDetails = viewModel.PersonalDetails;
             ContactDetails = viewModel.ContactDetails;
+            Salary = viewModel.Salary;
+            RemaingDaysOfLeave = viewModel.RemainingDaysOfLeave;
         }
 
         //methods
