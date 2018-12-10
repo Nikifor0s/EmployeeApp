@@ -1,7 +1,6 @@
 ﻿using EmployeeApp.DAL;
 using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
-using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -36,7 +35,6 @@ namespace ProjectEmployeeApp.Controllers
             if (employee == null)
                 return HttpNotFound();
 
-
             return View(employee);
         }
 
@@ -61,8 +59,7 @@ namespace ProjectEmployeeApp.Controllers
 
             if (ModelState.IsValid)
             {
-                var request = employee.MakeARequestForLeave(leave); 
-               
+                var request = employee.MakeARequestForLeave(leave);
 
                 _context.Leaves.Add(leave);
                 _context.Requests.Add(request);
@@ -92,7 +89,6 @@ namespace ProjectEmployeeApp.Controllers
                 Departments = _context.Departments.ToList(),
                 Roles = _context.Roles.ToList(),
                 Heading = "Add Employee"
-                
             };
             return View(viewModel);
         }
@@ -125,21 +121,10 @@ namespace ProjectEmployeeApp.Controllers
                 .Include(e => e.Role)
                 .SingleOrDefault(e => e.Id == Id);
 
-            var viewModel = new EmployeeFormViewModel
-            {
-                ContactDetails = employee.ContactDetails,
-                PersonalDetails = employee.PersonalDetails,
-                Departments = _context.Departments.ToList(),
-                Roles = _context.Roles.ToList(),
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                RoleId = employee.RoleId,
-                DepartmentId = employee.DepartmentId,
-                Id = employee.Id,
-                Heading = "Update Employee",
-                Salary = employee.Salary,
-                RemainingDaysOfLeave = employee.RemaingDaysOfLeave
-            };
+            var viewModel = new EmployeeFormViewModel(employee);
+
+            viewModel.Departments = _context.Departments.ToList();
+            viewModel.Roles = _context.Roles.ToList();
 
             return View("EmployeeForm", viewModel);
         }

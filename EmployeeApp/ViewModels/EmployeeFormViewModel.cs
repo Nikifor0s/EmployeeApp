@@ -47,5 +47,23 @@ namespace EmployeeApp.ViewModels
                 return actionName;
             }
         }
+
+        public EmployeeFormViewModel()
+        {
+        }
+
+        public EmployeeFormViewModel(Employee employee)
+        {
+            PersonalDetails = employee.PersonalDetails;
+            ContactDetails = employee.ContactDetails;
+            FirstName = employee.FirstName;
+            LastName = employee.LastName;
+            RoleId = employee.RoleId;
+            DepartmentId = employee.DepartmentId;
+            Id = employee.Id;
+            Heading = "Update Employee";
+            Salary = employee.Salary;
+            RemainingDaysOfLeave = employee.RemaingDaysOfLeave;
+        }
     }
 }
