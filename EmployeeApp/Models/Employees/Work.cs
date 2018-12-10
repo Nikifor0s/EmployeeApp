@@ -21,11 +21,10 @@ namespace EmployeeApp.Models.Employees
 
         //Constructors
         public Work()
-        {}
+        { }
 
         public Work(int employeeId, int shiftId)
         {
-
             ShiftId = shiftId;
             EmployeeID = employeeId;
         }
