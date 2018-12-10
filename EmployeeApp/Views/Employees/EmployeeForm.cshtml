@@ -50,9 +50,10 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="home">
                         <hr>
-                        @using (Html.BeginForm("Create", "Employees"))
+                        @using (Html.BeginForm("Update", "Employees"))
                         {
                             @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => m.Id)
                             <div class="form-group">
 
                                 <div class="col-xs-6">
