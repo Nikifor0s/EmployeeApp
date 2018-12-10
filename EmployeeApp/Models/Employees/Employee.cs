@@ -36,6 +36,8 @@ namespace EmployeeApp.Models.Employees
 
         public Role Role { get; set; }
 
+        public double Salary { get; set; }
+
         public virtual PersonalDetails PersonalDetails { get; set; }
 
         public virtual ContactDetails ContactDetails { get; set; }
