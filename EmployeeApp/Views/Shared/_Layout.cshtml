@@ -26,8 +26,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Shifts <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Search for a Shift", "Index", "Shifts")</li>
-                            <li><a href="#">Create a shift (Add a Work)</a></li>
-                            <li><a href="#">Cretae a Shift for many days</a></li>
+                            <li>@Html.ActionLink("Create a Shift", "Create", "Shifts")</li>
+                            <li>@Html.ActionLink("Create a custom Shift Schedule", "AddAWorkWeek", "Shifts")</li>
                             <li role="separator" class="divider"></li>
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                         </ul>
