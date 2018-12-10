@@ -94,7 +94,7 @@ namespace ProjectEmployeeApp.Controllers
                 Heading = "Add Employee"
                 
             };
-            return View("EmployeeForm", viewModel);
+            return View(viewModel);
         }
 
         [HttpPost]

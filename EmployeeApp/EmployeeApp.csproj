@@ -293,7 +293,7 @@
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Shifts\Create.cshtml" />
     <Content Include="Views\Shifts\Index.cshtml" />
-    <Content Include="Views\Employees\Update.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\EmployeeForm.cshtml" />
     <Content Include="Views\Employees\RequestLeave.cshtml" />
     <Content Include="Views\Leaves\Index.cshtml" />

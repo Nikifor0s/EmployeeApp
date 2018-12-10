@@ -19,6 +19,8 @@ namespace EmployeeApp.ViewModels
 
         public int RoleId { get; set; }
 
+        public double Salary { get; set; }
+
         public int RemainingDaysOfLeave { get; set; }
 
         public PersonalDetails PersonalDetails { get; set; }
