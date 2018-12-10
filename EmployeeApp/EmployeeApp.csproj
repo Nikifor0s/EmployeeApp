@@ -220,10 +220,6 @@
     <Compile Include="Migrations\201812101935191_SalaryToEmployee.Designer.cs">
       <DependentUpon>201812101935191_SalaryToEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812101949279_RelationshipWorkProjects.cs" />
-    <Compile Include="Migrations\201812101949279_RelationshipWorkProjects.Designer.cs">
-      <DependentUpon>201812101949279_RelationshipWorkProjects.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
     <Compile Include="Models\Employees\Assignment.cs" />
@@ -373,9 +369,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812101935191_SalaryToEmployee.resx">
       <DependentUpon>201812101935191_SalaryToEmployee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812101949279_RelationshipWorkProjects.resx">
-      <DependentUpon>201812101949279_RelationshipWorkProjects.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -20,7 +20,7 @@ namespace EmployeeApp.Models.Employees
 
         public bool IsCanceled { get; set; }
 
-        public ICollection<Assignment> Assignments { get; set; }
+
 
         //Constructors
         public Work()

@@ -7,13 +7,13 @@ namespace EmployeeApp.Models.Employees
     {
         [Key]
         [Column(Order = 1)]
-        public int WorkId { get; set; }
+        public int EmployeeId { get; set; }
 
         [Key]
         [Column(Order = 2)]
         public int ProjectId { get; set; }
 
-        public Work Work { get; set; }
+        public Employee Employee { get; set; }
 
         public Project Project { get; set; }
     }
