@@ -17,14 +17,22 @@ namespace EmployeeApp.Models.Employees
 
         public Shift Shift { get; set; }
 
+        public bool IsCanceled { get; set; }
+
         //Constructors
         public Work()
         {}
 
         public Work(int employeeId, int shiftId)
         {
+
             ShiftId = shiftId;
             EmployeeID = employeeId;
+        }
+
+        public void Cancel()
+        {
+            IsCanceled = true;
         }
     }
 }

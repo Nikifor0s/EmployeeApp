@@ -42,10 +42,10 @@ textarea {
 
 /* Tooltip text */
 
- 
 
-    /* Tooltip arrow */
-    
+
+/* Tooltip arrow */
+
 /* Show the tooltip text when you mouse over the tooltip container */
 
 .tooltip {
@@ -92,6 +92,7 @@ textarea {
         border-style: solid;
         border-color: transparent transparent #555 transparent;
     }
+
 .shifts {
     list-style: none;
 }
@@ -138,3 +139,102 @@ textarea {
             .shifts > li .details .dayshift {
                 font-size: 15px;
             }
+
+/*shifts style Css Strat*/
+.WorkDay h2 {
+    width: 100%;
+    background-color: #678164;
+    color: #fff;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+.WorkDay {
+    margin-top: 39px;
+    display: inline-block;
+    width: 100%;
+}
+
+    .WorkDay h3 {
+        text-align: center;
+        font-weight: bold;
+        padding: 9px 0px;
+    }
+
+span.shift-title {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 900;
+    background-color: #dfdfdf;
+}
+
+ul.shift-employees {
+    min-height: 193px;
+}
+
+.shifts-table {
+    width: 100%;
+}
+
+ul.shift-employees {
+    max-width: 367px;
+    margin: 0 auto;
+}
+
+ul.shift-employees {
+    margin-top: 16px;
+}
+
+.shift-employee-name {
+    font-size: 17px;
+    padding-bottom: 3px;
+    margin-top: 43px;
+}
+.shift-actions span:first-child {
+    color: red;
+}
+
+.shift-actions span:last-child {
+    color: green;
+}
+
+.shift-actions {
+    opacity: 0;
+}
+
+ul.shift-employees li:hover > .shift-actions {
+    opacity: 1;
+}
+.shift-selector {
+    float: left;
+    min-width: 20%;
+}
+
+.input-date-shift-selector input {
+    padding: 3px;
+    border-radius: 4px;
+}
+.shift-selector-place {
+    display: inline-block;
+}
+
+.shift-selector-place button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.shift-selector-place div:first-child {
+    margin-right: 25px;
+}
+
+.shift-selector-place button {
+    background-color: #353535;
+    border: none;
+}
+
+.shift-selector-place button:hover {
+    background-color: #274c27;
+}
+/*shifts style Css End*/

@@ -2,6 +2,7 @@
 using EmployeeApp.Models.Employees;
 using EmployeeApp.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -17,7 +18,6 @@ namespace EmployeeApp.Controllers
         {
             _context = new EmployeeAppDbContext();
         }
-
         
 
         //get
@@ -38,12 +38,12 @@ namespace EmployeeApp.Controllers
 
             var employees = _context.Employees
                 .Where(e => e.DepartmentId == shift.DepartmentId &&
-                !e.Works.Any(w => w.ShiftId == shift.Id))
+                !e.Works.Any(w => w.ShiftId == shift.Id && !w.IsCanceled))
                 .ToList();
 
             var workingEmployees = _context.Employees
                 .Where(e => e.DepartmentId == shift.DepartmentId &&
-                e.Works.Any(w => w.ShiftId == shift.Id))
+                e.Works.Any(w => w.ShiftId == shift.Id && !w.IsCanceled))
                 .ToList();
 
             var viewModel = new AssignShiftEmployeesViewModel
@@ -73,7 +73,15 @@ namespace EmployeeApp.Controllers
             var shift = viewModel.Shift.Id;
 
             var exist = _context.Works.Any(w => w.EmployeeID == employee && w.ShiftId == shift);
+            var existandiscanceled = _context.Works.Any(w => w.EmployeeID == employee && w.ShiftId == shift && w.IsCanceled);
 
+            if (existandiscanceled)
+            {
+                var updatedWork = _context.Works.Where(w => w.EmployeeID == employee && w.ShiftId == shift).Single();
+                updatedWork.IsCanceled = false;
+                _context.SaveChanges();
+                 return RedirectToAction("NewWork", viewModel.Shift.Id);
+            }
             if (exist)
             {
                 return RedirectToAction("");
@@ -123,18 +131,56 @@ namespace EmployeeApp.Controllers
             return View(viewModel);
         }
 
-        //Index (works)
-        public ActionResult Index()
+        public ActionResult Index(DateTime? dateTime, int? departmentId)
         {
+            var departments = new GetWorkDayViewModel
+            {
+                Departments = _context.Departments.ToList()
+            };
+            if (dateTime == null && departmentId == null)
+            {
+                return View(departments);
+            }
+            else
+            {
+               
+                return RedirectToAction("GetWorkDay", new { currentDatetime = dateTime, currnetDpertmentId = departmentId, departmentsToList = departments } );
+            }
+            
+
+        }
+
+
+
+        //Index (works)
+        public ActionResult GetWorkDay(DateTime? dateTime, int? departmentId )
+        {
+               
             var shifts = _context.Shifts
                                 .Include(s => s.Department)
                                 .Include(s => s.ShiftType)
                                 .Include(s => s.Works)
-                                .Where(s => s.DateTime > DateTime.Now)
-                                .OrderBy(s => s.DateTime)
+                                .Include(s => s.Works.Select(w => w.Employee))
+                                .Where(s => s.DateTime == dateTime && s.DepartmentId == departmentId )
                                 .ToList();
+            
 
-            return View(shifts);
+
+            var ShiftResults = shifts.First();
+                               
+                                
+                      
+            var workDay = new GetWorkDayViewModel
+            {
+                Datetime = ShiftResults.DateTime,
+                DepartemtName = ShiftResults.Department.Name,
+                Shifts = shifts,
+                Departments = _context.Departments.ToList()
+            };
+
+            
+
+            return View("GetWorkDay",workDay);
         }
 
         //Create Get (works)

@@ -142,11 +142,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\api\ShiftsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\LeavesController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="DAL\EmployeeAppDbContext.cs" />
+    <Compile Include="Dtos\ShiftDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,6 +212,10 @@
     <Compile Include="Migrations\201812042342428_AddColumnDescriptionToLeave.Designer.cs">
       <DependentUpon>201812042342428_AddColumnDescriptionToLeave.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812091329498_AddWorkIsCanceled.cs" />
+    <Compile Include="Migrations\201812091329498_AddWorkIsCanceled.Designer.cs">
+      <DependentUpon>201812091329498_AddWorkIsCanceled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employees\Answer.cs" />
     <Compile Include="Models\Employees\Assignment.cs" />
@@ -233,6 +239,7 @@
     <Compile Include="ViewModels\AssignShiftEmployeesViewModel.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
+    <Compile Include="ViewModels\GetWorkDayViewModel.cs" />
     <Compile Include="ViewModels\ShiftFormViewModel.cs" />
     <Compile Include="ViewModels\WorkDayViewModel.cs" />
   </ItemGroup>
@@ -248,6 +255,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bloodhound.js" />
     <Content Include="Scripts\bloodhound.min.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -288,11 +296,10 @@
     <Content Include="Views\Shifts\NewWork.cshtml" />
     <Content Include="Views\Shifts\AddAWorkWeek.cshtml" />
     <Content Include="Views\Employees\MyShifts.cshtml" />
+    <Content Include="Views\Shifts\GetWorkDay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\api\" />
-    <Folder Include="Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -352,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812042342428_AddColumnDescriptionToLeave.resx">
       <DependentUpon>201812042342428_AddColumnDescriptionToLeave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812091329498_AddWorkIsCanceled.resx">
+      <DependentUpon>201812091329498_AddWorkIsCanceled.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
