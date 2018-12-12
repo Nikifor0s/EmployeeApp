@@ -18,18 +18,23 @@ namespace EmployeeApp.Controllers.api
         }
 
         [HttpDelete]
-        public IHttpActionResult Cancel(int Id)
+        public IHttpActionResult Cancel(string id)
         {
+            string myId = id;
+            string[] stringId = myId.Split();
+
+            var employeeId = int.Parse(stringId[1]);
+            var shiftId = int.Parse(stringId[0]);
 
             var work = _context.Works
-                .Where(w => w.EmployeeID == Id)
-                .First();
+                .Where(w => w.EmployeeID == employeeId && w.ShiftId == shiftId)
+                .Single();
                 
 
             if (work.IsCanceled)
                 return NotFound();
 
-            work.Cancel();
+            _context.Works.Remove(work);
             _context.SaveChanges();
 
             return Ok();

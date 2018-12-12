@@ -155,16 +155,14 @@ namespace EmployeeApp.Controllers
         //Index (works)
         public ActionResult GetWorkDay(DateTime? dateTime, int? departmentId )
         {
-               
+
             var shifts = _context.Shifts
                                 .Include(s => s.Department)
                                 .Include(s => s.ShiftType)
                                 .Include(s => s.Works)
                                 .Include(s => s.Works.Select(w => w.Employee))
-                                .Where(s => s.DateTime == dateTime && s.DepartmentId == departmentId )
+                                .Where(s => s.DateTime == dateTime && s.DepartmentId == departmentId)
                                 .ToList();
-            
-
 
             var ShiftResults = shifts.First();
                                
@@ -175,7 +173,8 @@ namespace EmployeeApp.Controllers
                 Datetime = ShiftResults.DateTime,
                 DepartemtName = ShiftResults.Department.Name,
                 Shifts = shifts,
-                Departments = _context.Departments.ToList()
+                Departments = _context.Departments.ToList(),
+              
             };
 
             

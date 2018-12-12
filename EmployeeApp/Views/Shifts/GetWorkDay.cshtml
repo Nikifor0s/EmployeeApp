@@ -40,7 +40,7 @@
                                 <li>
                                     <div class="shift-employee-name">@work.Employee.FullName</div>
                                     <div class="shift-actions">
-                                        <span class="col-md-6 col-lg-6"><a href="#" class="js-cancel-work" data-employee-id="@work.EmployeeID" data-shift-id="@shift.Id">Cancel</a></span>
+                                        <span class="col-md-6 col-lg-6"><a href="#" class="js-cancel-work" data-employee-id="@work.ShiftId.ToString() @work.Employee.Id.ToString()" data-shift-id="@shift.Id">Cancel</a></span>
                                         <span class="col-md-6 col-lg-6">Assign Projects</span>
                                     </div>
                                 </li>

@@ -17,7 +17,7 @@ namespace EmployeeApp.ViewModels
         public string DepartemtName { get; set; }
 
         public IEnumerable<Shift> Shifts { get; set; }
-
+        //public ILookup<int,Work> Works { get; set; }
 
 
 
